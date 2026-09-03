@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Scissors,
@@ -10,6 +10,8 @@ import {
   MapPin,
   BadgeCheck,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,94 +35,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Tab = "costureiras" | "atelies";
+type Tab = ProviderType;
 
-type Provider = {
-  name: string;
-  rating: number;
-  reviews: number;
-  tags: string[];
-  distance: string;
-  neighborhood: string;
-  color: string;
-  verified: boolean;
-};
-
-const COSTUREIRAS: Provider[] = [
-  {
-    name: "Dona Lúcia Costureira",
-    rating: 4.9,
-    reviews: 120,
-    tags: ["Consertos", "Recriação de roupas"],
-    distance: "0.8 km",
-    neighborhood: "Gávea",
-    color: "oklch(0.62 0.19 250)",
-    verified: true,
-  },
-  {
-    name: "Tia Joana Home",
-    rating: 4.7,
-    reviews: 210,
-    tags: ["Peças de decoração", "Consertos"],
-    distance: "3.1 km",
-    neighborhood: "Copacabana",
-    color: "oklch(0.7 0.17 60)",
-    verified: true,
-  },
-  {
-    name: "Atelier da Marta",
-    rating: 4.8,
-    reviews: 86,
-    tags: ["Roupas sob medida", "Ajustes finos"],
-    distance: "1.4 km",
-    neighborhood: "Leblon",
-    color: "oklch(0.6 0.15 160)",
-    verified: false,
-  },
-  {
-    name: "Seu Antônio Alfaiate",
-    rating: 4.6,
-    reviews: 54,
-    tags: ["Roupas sob medida", "Consertos"],
-    distance: "2.2 km",
-    neighborhood: "Botafogo",
-    color: "oklch(0.62 0.14 330)",
-    verified: true,
-  },
-];
-
-const ATELIES: Provider[] = [
-  {
-    name: "Ateliê Fio & Forma",
-    rating: 4.8,
-    reviews: 95,
-    tags: ["Roupas sob medida", "Alta costura"],
-    distance: "1.1 km",
-    neighborhood: "Gávea",
-    color: "oklch(0.58 0.16 300)",
-    verified: true,
-  },
-  {
-    name: "Oficina do Tecido",
-    rating: 4.5,
-    reviews: 142,
-    tags: ["Consertos", "Bordados"],
-    distance: "2.6 km",
-    neighborhood: "Ipanema",
-    color: "oklch(0.6 0.15 200)",
-    verified: false,
-  },
-  {
-    name: "Ateliê Casa Nova",
-    rating: 4.9,
-    reviews: 63,
-    tags: ["Recriação de roupas", "Roupas sob medida"],
-    distance: "3.8 km",
-    neighborhood: "Copacabana",
-    color: "oklch(0.68 0.15 40)",
-    verified: true,
-  },
-];
+const COSTUREIRAS = PROVIDERS.filter((provider) => provider.type === "costureiras");
+const ATELIES = PROVIDERS.filter((provider) => provider.type === "atelies");
 
 const LOCATIONS = [
   "Rua Marquês de São Vicente, 225",
@@ -146,7 +64,11 @@ function AvatarBlock({ provider }: { provider: Provider }) {
 
 function ProviderCard({ provider }: { provider: Provider }) {
   return (
-    <button className="group flex w-full items-center gap-4 rounded-2xl bg-card p-4 text-left shadow-sm ring-1 ring-border/60 transition-shadow hover:shadow-md">
+    <Link
+      to={provider.type === "costureiras" ? "/costureiras/$slug" : "/atelies/$slug"}
+      params={{ slug: provider.slug }}
+      className="group flex w-full items-center gap-4 rounded-2xl bg-card p-4 text-left shadow-sm ring-1 ring-border/60 transition-shadow hover:shadow-md"
+    >
       <AvatarBlock provider={provider} />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5">
@@ -170,7 +92,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
         </p>
       </div>
       <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5" />
-    </button>
+    </Link>
   );
 }
 
@@ -210,20 +132,22 @@ function Index() {
       {/* Location selector */}
       <div className="relative">
         <p className="text-sm text-muted-foreground">Sua localização</p>
-        <button
+        <Button
+          variant="ghost"
           onClick={() => setLocationOpen((o) => !o)}
-          className="mt-1 flex items-center gap-1.5 text-xl font-bold text-foreground"
+          className="mt-1 h-auto max-w-full justify-start gap-1.5 p-0 text-xl font-bold text-foreground hover:bg-transparent"
         >
           <MapPin className="h-5 w-5 text-primary" />
           <span className="truncate">{location}</span>
           <ChevronDown
             className={`h-5 w-5 shrink-0 text-primary transition-transform ${locationOpen ? "rotate-180" : ""}`}
           />
-        </button>
+        </Button>
         {locationOpen && (
           <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-2xl bg-card shadow-lg ring-1 ring-border">
             {LOCATIONS.map((loc) => (
-              <button
+              <Button
+                variant="ghost"
                 key={loc}
                 onClick={() => {
                   setLocation(loc);
@@ -235,7 +159,7 @@ function Index() {
               >
                 <MapPin className="h-4 w-4 shrink-0" />
                 {loc}
-              </button>
+              </Button>
             ))}
           </div>
         )}
@@ -254,7 +178,8 @@ function Index() {
 
       {/* Tabs */}
       <div className="mt-6 grid grid-cols-2 gap-1 rounded-full bg-secondary p-1">
-        <button
+        <Button
+          variant="ghost"
           onClick={() => selectTab("costureiras")}
           className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
             tab === "costureiras"
@@ -264,8 +189,9 @@ function Index() {
         >
           <Scissors className="h-4 w-4" />
           Costureiras
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="ghost"
           onClick={() => selectTab("atelies")}
           className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
             tab === "atelies"
@@ -275,13 +201,14 @@ function Index() {
         >
           <Building2 className="h-4 w-4" />
           Ateliês
-        </button>
+        </Button>
       </div>
 
       {/* Filter chips */}
       <div className="mt-5 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {FILTER_CHIPS[tab].map((chip) => (
-          <button
+          <Button
+            variant="ghost"
             key={chip}
             onClick={() => setActiveFilter(activeFilter === chip ? null : chip)}
             className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
@@ -291,7 +218,7 @@ function Index() {
             }`}
           >
             {chip}
-          </button>
+          </Button>
         ))}
       </div>
 

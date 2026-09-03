@@ -59,6 +59,29 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-profile-shell: var(--profile-shell);
+  --color-profile-cover: var(--profile-cover);
+  --color-profile-media: var(--profile-media);
+  --color-profile-blue: var(--profile-blue);
+  --color-profile-green: var(--profile-green);
+  --color-profile-gold: var(--profile-gold);
+  --color-profile-pink: var(--profile-pink);
+  --color-profile-violet: var(--profile-violet);
+  --color-profile-cyan: var(--profile-cyan);
+  --color-profile-coral: var(--profile-coral);
+  --color-profile-star: var(--profile-star);
+  --color-profile-course: var(--profile-course);
+  --color-profile-course-soft: var(--profile-course-soft);
+  --color-service-blue: var(--service-blue);
+  --color-service-blue-foreground: var(--service-blue-foreground);
+  --color-service-green: var(--service-green);
+  --color-service-green-foreground: var(--service-green-foreground);
+  --radius-profile: 2rem;
+  --shadow-profile: 0 18px 60px color-mix(in oklab, var(--foreground) 10%, transparent);
+  --shadow-profile-action: 0 8px 24px color-mix(in oklab, var(--foreground) 12%, transparent);
+  --shadow-profile-button: 0 12px 26px color-mix(in oklab, var(--primary) 30%, transparent);
+  --shadow-profile-footer: 0 -8px 30px color-mix(in oklab, var(--foreground) 8%, transparent);
+  --shadow-profile-nav: 0 4px 18px color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 :root {
@@ -95,6 +118,23 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --profile-shell: oklch(0.965 0.004 285);
+  --profile-cover: oklch(0.965 0.008 290);
+  --profile-media: oklch(0.9 0.055 240);
+  --profile-blue: oklch(0.65 0.2 245);
+  --profile-green: oklch(0.7 0.17 150);
+  --profile-gold: oklch(0.73 0.17 70);
+  --profile-pink: oklch(0.67 0.18 335);
+  --profile-violet: oklch(0.62 0.19 300);
+  --profile-cyan: oklch(0.68 0.14 210);
+  --profile-coral: oklch(0.7 0.16 40);
+  --profile-star: oklch(0.86 0.19 92);
+  --profile-course: oklch(0.67 0.23 315);
+  --profile-course-soft: oklch(0.97 0.035 315);
+  --service-blue: oklch(0.91 0.065 240);
+  --service-blue-foreground: oklch(0.61 0.2 245);
+  --service-green: oklch(0.92 0.07 145);
+  --service-green-foreground: oklch(0.65 0.17 150);
 }
 
 
@@ -131,7 +171,44 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --profile-shell: oklch(0.15 0.02 270);
+  --profile-cover: oklch(0.25 0.025 285);
+  --profile-media: oklch(0.3 0.07 240);
+  --profile-blue: oklch(0.72 0.17 245);
+  --profile-green: oklch(0.76 0.14 150);
+  --profile-gold: oklch(0.78 0.14 70);
+  --profile-pink: oklch(0.74 0.15 335);
+  --profile-violet: oklch(0.72 0.16 300);
+  --profile-cyan: oklch(0.75 0.12 210);
+  --profile-coral: oklch(0.76 0.13 40);
+  --profile-star: oklch(0.86 0.19 92);
+  --profile-course: oklch(0.72 0.2 315);
+  --profile-course-soft: oklch(0.28 0.06 315);
+  --service-blue: oklch(0.3 0.07 240);
+  --service-blue-foreground: oklch(0.78 0.14 240);
+  --service-green: oklch(0.3 0.07 145);
+  --service-green-foreground: oklch(0.8 0.13 145);
 }
+
+.profile-map {
+  background-color: oklch(0.91 0.07 130);
+  background-image:
+    linear-gradient(35deg, transparent 46%, color-mix(in oklab, var(--card) 78%, transparent) 47% 53%, transparent 54%),
+    linear-gradient(145deg, transparent 44%, color-mix(in oklab, var(--profile-blue) 16%, transparent) 45% 48%, transparent 49%),
+    radial-gradient(circle at 18% 25%, color-mix(in oklab, var(--profile-green) 25%, transparent) 0 14%, transparent 15%);
+}
+
+.profile-map-road {
+  position: absolute;
+  height: 0.75rem;
+  border: 2px solid color-mix(in oklab, var(--muted-foreground) 22%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+}
+
+.profile-map-road-a { width: 115%; left: -8%; top: 58%; transform: rotate(-8deg); }
+.profile-map-road-b { width: 80%; left: -20%; top: 30%; transform: rotate(62deg); }
+.profile-map-road-c { width: 85%; right: -25%; top: 27%; transform: rotate(72deg); }
 
 @layer base {
   * {
