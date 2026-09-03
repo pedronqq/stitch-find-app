@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AteliesSlugRouteImport } from './routes/atelies.$slug'
+import { Route as CostureirasSlugRouteImport } from './routes/costureiras.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AteliesSlugRoute = AteliesSlugRouteImport.update({
+  id: '/atelies/$slug',
+  path: '/atelies/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CostureirasSlugRoute = CostureirasSlugRouteImport.update({
+  id: '/costureiras/$slug',
+  path: '/costureiras/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atelies/$slug': typeof AteliesSlugRoute
+  '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atelies/$slug': typeof AteliesSlugRoute
+  '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atelies/$slug': typeof AteliesSlugRoute
+  '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/atelies/$slug' | '/costureiras/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/atelies/$slug' | '/costureiras/$slug'
+  id: '__root__' | '/' | '/atelies/$slug' | '/costureiras/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AteliesSlugRoute: typeof AteliesSlugRoute
+  CostureirasSlugRoute: typeof CostureirasSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atelies/$slug': {
+      id: '/atelies/$slug'
+      path: '/atelies/$slug'
+      fullPath: '/atelies/$slug'
+      preLoaderRoute: typeof AteliesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/costureiras/$slug': {
+      id: '/costureiras/$slug'
+      path: '/costureiras/$slug'
+      fullPath: '/costureiras/$slug'
+      preLoaderRoute: typeof CostureirasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AteliesSlugRoute: AteliesSlugRoute,
+  CostureirasSlugRoute: CostureirasSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
