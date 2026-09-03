@@ -1,0 +1,165 @@
+export type ProviderType = "costureiras" | "atelies";
+
+export type Provider = {
+  slug: string;
+  type: ProviderType;
+  name: string;
+  rating: number;
+  reviews: number;
+  tags: string[];
+  distance: string;
+  neighborhood: string;
+  color: string;
+  verified: boolean;
+  price: string;
+  about: string;
+  course: string;
+  portfolio: { title: string; icon: "scissors" | "shirt" | "bag" }[];
+};
+
+export const PROVIDERS: Provider[] = [
+  {
+    slug: "dona-lucia-costuras",
+    type: "costureiras",
+    name: "Dona Lúcia Costuras",
+    rating: 4.9,
+    reviews: 120,
+    tags: ["Consertos", "Recriação de roupas"],
+    distance: "0.8 km",
+    neighborhood: "Gávea",
+    color: "var(--profile-blue)",
+    verified: true,
+    price: "$$  (R$ 30 - R$ 80)",
+    about: "Trabalho com costura há mais de 20 anos. Sou especialista em consertos rápidos.",
+    course: "Como precificar seus serviços de costura",
+    portfolio: [
+      { title: "Ajuste de calça social", icon: "scissors" },
+      { title: "Conserto de zíper", icon: "shirt" },
+      { title: "Reforma de blazer", icon: "bag" },
+    ],
+  },
+  {
+    slug: "tia-joana-home",
+    type: "costureiras",
+    name: "Tia Joana Home",
+    rating: 4.7,
+    reviews: 210,
+    tags: ["Peças de decoração", "Consertos"],
+    distance: "3.1 km",
+    neighborhood: "Copacabana",
+    color: "var(--profile-gold)",
+    verified: true,
+    price: "$$  (R$ 35 - R$ 120)",
+    about: "Costuro peças para a casa e faço consertos com acabamento cuidadoso e atendimento próximo.",
+    course: "Acabamentos profissionais para peças decorativas",
+    portfolio: [
+      { title: "Capa de almofada", icon: "shirt" },
+      { title: "Ajuste de cortina", icon: "scissors" },
+      { title: "Bolsa de tecido", icon: "bag" },
+    ],
+  },
+  {
+    slug: "atelier-da-marta",
+    type: "costureiras",
+    name: "Atelier da Marta",
+    rating: 4.8,
+    reviews: 86,
+    tags: ["Roupas sob medida", "Ajustes finos"],
+    distance: "1.4 km",
+    neighborhood: "Leblon",
+    color: "var(--profile-green)",
+    verified: false,
+    price: "$$$  (R$ 80 - R$ 260)",
+    about: "Crio peças sob medida e realizo ajustes finos, sempre respeitando o caimento e o estilo de cada cliente.",
+    course: "Modelagem e ajustes para um caimento perfeito",
+    portfolio: [
+      { title: "Vestido sob medida", icon: "shirt" },
+      { title: "Ajuste de barra", icon: "scissors" },
+      { title: "Reforma de vestido", icon: "bag" },
+    ],
+  },
+  {
+    slug: "seu-antonio-alfaiate",
+    type: "costureiras",
+    name: "Seu Antônio Alfaiate",
+    rating: 4.6,
+    reviews: 54,
+    tags: ["Roupas sob medida", "Consertos"],
+    distance: "2.2 km",
+    neighborhood: "Botafogo",
+    color: "var(--profile-pink)",
+    verified: true,
+    price: "$$$  (R$ 70 - R$ 300)",
+    about: "Alfaiataria tradicional, ternos sob medida e consertos precisos feitos com experiência e atenção.",
+    course: "Técnicas modernas de alfaiataria",
+    portfolio: [
+      { title: "Paletó sob medida", icon: "shirt" },
+      { title: "Ajuste de manga", icon: "scissors" },
+      { title: "Reforma de terno", icon: "bag" },
+    ],
+  },
+  {
+    slug: "fio-e-forma",
+    type: "atelies",
+    name: "Ateliê Fio & Forma",
+    rating: 4.8,
+    reviews: 95,
+    tags: ["Roupas sob medida", "Alta costura"],
+    distance: "1.1 km",
+    neighborhood: "Gávea",
+    color: "var(--profile-violet)",
+    verified: true,
+    price: "$$$  (R$ 120 - R$ 450)",
+    about: "Ateliê especializado em peças exclusivas, modelagem sob medida e acabamento de alta costura.",
+    course: "Gestão e atendimento para ateliês de moda",
+    portfolio: [
+      { title: "Vestido de festa", icon: "shirt" },
+      { title: "Modelagem exclusiva", icon: "scissors" },
+      { title: "Bolsa artesanal", icon: "bag" },
+    ],
+  },
+  {
+    slug: "oficina-do-tecido",
+    type: "atelies",
+    name: "Oficina do Tecido",
+    rating: 4.5,
+    reviews: 142,
+    tags: ["Consertos", "Bordados"],
+    distance: "2.6 km",
+    neighborhood: "Ipanema",
+    color: "var(--profile-cyan)",
+    verified: false,
+    price: "$$  (R$ 40 - R$ 180)",
+    about: "Uma oficina criativa para consertos, personalização e bordados que dão nova vida às suas peças.",
+    course: "Bordado criativo aplicado à moda",
+    portfolio: [
+      { title: "Bordado floral", icon: "shirt" },
+      { title: "Reparo invisível", icon: "scissors" },
+      { title: "Ecobag bordada", icon: "bag" },
+    ],
+  },
+  {
+    slug: "casa-nova",
+    type: "atelies",
+    name: "Ateliê Casa Nova",
+    rating: 4.9,
+    reviews: 63,
+    tags: ["Recriação de roupas", "Roupas sob medida"],
+    distance: "3.8 km",
+    neighborhood: "Copacabana",
+    color: "var(--profile-coral)",
+    verified: true,
+    price: "$$$  (R$ 90 - R$ 360)",
+    about: "Transformamos roupas afetivas em peças atuais e criamos modelos sob medida com personalidade.",
+    course: "Upcycling e recriação de roupas",
+    portfolio: [
+      { title: "Vestido recriado", icon: "shirt" },
+      { title: "Customização jeans", icon: "scissors" },
+      { title: "Bolsa reaproveitada", icon: "bag" },
+    ],
+  },
+];
+
+export function getProvider(type: ProviderType, slug: string) {
+  return PROVIDERS.find((provider) => provider.type === type && provider.slug === slug);
+}
