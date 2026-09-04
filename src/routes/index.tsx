@@ -1,16 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import {
-  Scissors,
-  Building2,
-  Search,
-  Star,
-  ChevronDown,
-  ChevronRight,
-  MapPin,
-  BadgeCheck,
-} from "lucide-react";
+import { Scissors, Building2, Search, ChevronRight, MapPin, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
 
 export const Route = createFileRoute("/")({
@@ -40,11 +32,7 @@ type Tab = ProviderType;
 const COSTUREIRAS = PROVIDERS.filter((provider) => provider.type === "costureiras");
 const ATELIES = PROVIDERS.filter((provider) => provider.type === "atelies");
 
-const LOCATIONS = [
-  "Rua Marquês de São Vicente, 225",
-  "Av. Atlântica, 1702 — Copacabana",
-  "Rua Visconde de Pirajá, 500 — Ipanema",
-];
+const LOCATION = "Rua Marquês de São Vicente, 225";
 
 const FILTER_CHIPS: Record<Tab, string[]> = {
   costureiras: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Ajustes finos"],
@@ -79,11 +67,6 @@ function ProviderCard({ provider }: { provider: Provider }) {
             <BadgeCheck className="h-5 w-5 shrink-0 text-primary" fill="var(--color-primary)" stroke="var(--color-card)" />
           )}
         </div>
-        <div className="mt-1 flex items-center gap-1.5">
-          <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-          <span className="font-semibold text-foreground">{provider.rating.toFixed(1)}</span>
-          <span className="text-sm text-muted-foreground">({provider.reviews})</span>
-        </div>
         <p className="mt-1 truncate text-sm text-muted-foreground">
           {provider.tags.join(" • ")}
         </p>
@@ -100,8 +83,6 @@ function Index() {
   const [tab, setTab] = useState<Tab>("costureiras");
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const [location, setLocation] = useState(LOCATIONS[0]);
-  const [locationOpen, setLocationOpen] = useState(false);
 
   const providers = tab === "costureiras" ? COSTUREIRAS : ATELIES;
 
@@ -128,41 +109,14 @@ function Index() {
   };
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background px-5 pb-10 pt-8">
-      {/* Location selector */}
-      <div className="relative">
+    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))]">
+      {/* Location (estática) */}
+      <div>
         <p className="text-sm text-muted-foreground">Sua localização</p>
-        <Button
-          variant="ghost"
-          onClick={() => setLocationOpen((o) => !o)}
-          className="mt-1 h-auto max-w-full justify-start gap-1.5 p-0 text-xl font-bold text-foreground hover:bg-transparent"
-        >
-          <MapPin className="h-5 w-5 text-primary" />
-          <span className="truncate">{location}</span>
-          <ChevronDown
-            className={`h-5 w-5 shrink-0 text-primary transition-transform ${locationOpen ? "rotate-180" : ""}`}
-          />
-        </Button>
-        {locationOpen && (
-          <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-2xl bg-card shadow-lg ring-1 ring-border">
-            {LOCATIONS.map((loc) => (
-              <Button
-                variant="ghost"
-                key={loc}
-                onClick={() => {
-                  setLocation(loc);
-                  setLocationOpen(false);
-                }}
-                className={`flex w-full items-center gap-2 px-4 py-3 text-left text-sm transition-colors hover:bg-accent ${
-                  loc === location ? "font-semibold text-primary" : "text-foreground"
-                }`}
-              >
-                <MapPin className="h-4 w-4 shrink-0" />
-                {loc}
-              </Button>
-            ))}
-          </div>
-        )}
+        <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
+          <MapPin className="h-5 w-5 shrink-0 text-primary" />
+          <span className="truncate">{LOCATION}</span>
+        </p>
       </div>
 
       {/* Search bar */}
@@ -232,6 +186,8 @@ function Index() {
           results.map((p) => <ProviderCard key={p.name} provider={p} />)
         )}
       </div>
+
+      <BottomNav />
     </div>
   );
 }
