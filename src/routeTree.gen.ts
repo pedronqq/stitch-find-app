@@ -10,12 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CursosRouteImport } from './routes/cursos'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as AteliesSlugRouteImport } from './routes/atelies.$slug'
 import { Route as CostureirasSlugRouteImport } from './routes/costureiras.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CursosRoute = CursosRouteImport.update({
+  id: '/cursos',
+  path: '/cursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AteliesSlugRoute = AteliesSlugRouteImport.update({
@@ -31,30 +49,61 @@ const CostureirasSlugRoute = CostureirasSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cursos': typeof CursosRoute
+  '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cursos': typeof CursosRoute
+  '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cursos': typeof CursosRoute
+  '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/atelies/$slug' | '/costureiras/$slug'
+  fullPaths:
+    | '/'
+    | '/cursos'
+    | '/mapa'
+    | '/perfil'
+    | '/atelies/$slug'
+    | '/costureiras/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/atelies/$slug' | '/costureiras/$slug'
-  id: '__root__' | '/' | '/atelies/$slug' | '/costureiras/$slug'
+  to:
+    | '/'
+    | '/cursos'
+    | '/mapa'
+    | '/perfil'
+    | '/atelies/$slug'
+    | '/costureiras/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/cursos'
+    | '/mapa'
+    | '/perfil'
+    | '/atelies/$slug'
+    | '/costureiras/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CursosRoute: typeof CursosRoute
+  MapaRoute: typeof MapaRoute
+  PerfilRoute: typeof PerfilRoute
   AteliesSlugRoute: typeof AteliesSlugRoute
   CostureirasSlugRoute: typeof CostureirasSlugRoute
 }
@@ -66,6 +115,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cursos': {
+      id: '/cursos'
+      path: '/cursos'
+      fullPath: '/cursos'
+      preLoaderRoute: typeof CursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atelies/$slug': {
@@ -87,6 +157,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CursosRoute: CursosRoute,
+  MapaRoute: MapaRoute,
+  PerfilRoute: PerfilRoute,
   AteliesSlugRoute: AteliesSlugRoute,
   CostureirasSlugRoute: CostureirasSlugRoute,
 }
