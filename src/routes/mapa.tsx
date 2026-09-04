@@ -39,7 +39,7 @@ function MapaPage() {
         </p>
       </header>
 
-      <div className="relative mt-4 flex-1 overflow-hidden">
+      <div className="relative mt-4 flex-1 overflow-hidden pb-20">
         <div className="profile-map absolute inset-0">
           <div className="profile-map-road profile-map-road-a" />
           <div className="profile-map-road profile-map-road-b" />
@@ -71,7 +71,7 @@ function MapaPage() {
         </div>
 
         {selected && (
-          <div className="absolute inset-x-3 bottom-[7.5rem] z-30">
+          <div className="absolute inset-x-3 bottom-24 z-30">
             <div className="rounded-3xl bg-card p-4 shadow-profile">
               <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
                 <div className="min-w-0">
@@ -104,8 +104,6 @@ function MapaPage() {
           </div>
         )}
       </div>
-
-      <div className="h-24" />
       <BottomNav />
     </div>
   );
