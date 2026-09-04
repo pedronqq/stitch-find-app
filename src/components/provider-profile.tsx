@@ -28,7 +28,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
   const [contacted, setContacted] = useState(false);
 
   return (
-    <div className="min-h-screen bg-profile-shell pb-32 text-foreground">
+    <div className="min-h-[100dvh] bg-profile-shell pb-32 text-foreground">
       <main className="mx-auto w-full max-w-md bg-card">
         <header className="flex items-center justify-between px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
           <Button asChild variant="ghost" size="icon" className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary" aria-label="Voltar">
