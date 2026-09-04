@@ -12,7 +12,7 @@ export const Route = createFileRoute("/costureiras/$slug")({
   head: ({ loaderData }) => ({
     meta: [
       { title: loaderData ? `${loaderData.name} — Costura Fácil` : "Costureira não encontrada" },
-      { name: "description", content: loaderData ? `Conheça ${loaderData.name}, veja serviços, portfólio, avaliações e entre em contato.` : "Perfil de costureira indisponível." },
+      { name: "description", content: loaderData ? `Conheça ${loaderData.name}, veja serviços, portfólio e entre em contato.` : "Perfil de costureira indisponível." },
       { property: "og:title", content: loaderData ? `${loaderData.name} — Costura Fácil` : "Costureira não encontrada" },
       { property: "og:description", content: loaderData ? `Serviços e portfólio de ${loaderData.name}.` : "Perfil de costureira indisponível." },
       { property: "og:type", content: "profile" },

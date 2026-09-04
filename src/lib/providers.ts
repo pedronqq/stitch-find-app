@@ -15,6 +15,8 @@ export type Provider = {
   about: string;
   course: string;
   portfolio: { title: string; icon: "scissors" | "shirt" | "bag" }[];
+  /** Posição relativa no mapa ilustrativo (0-100). */
+  map: { x: number; y: number };
 };
 
 export const PROVIDERS: Provider[] = [
@@ -37,6 +39,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Conserto de zíper", icon: "shirt" },
       { title: "Reforma de blazer", icon: "bag" },
     ],
+    map: { x: 32, y: 58 },
   },
   {
     slug: "tia-joana-home",
@@ -57,6 +60,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Ajuste de cortina", icon: "scissors" },
       { title: "Bolsa de tecido", icon: "bag" },
     ],
+    map: { x: 70, y: 30 },
   },
   {
     slug: "atelier-da-marta",
@@ -77,6 +81,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Ajuste de barra", icon: "scissors" },
       { title: "Reforma de vestido", icon: "bag" },
     ],
+    map: { x: 22, y: 34 },
   },
   {
     slug: "seu-antonio-alfaiate",
@@ -97,6 +102,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Ajuste de manga", icon: "scissors" },
       { title: "Reforma de terno", icon: "bag" },
     ],
+    map: { x: 56, y: 72 },
   },
   {
     slug: "fio-e-forma",
@@ -117,6 +123,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Modelagem exclusiva", icon: "scissors" },
       { title: "Bolsa artesanal", icon: "bag" },
     ],
+    map: { x: 45, y: 22 },
   },
   {
     slug: "oficina-do-tecido",
@@ -137,6 +144,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Reparo invisível", icon: "scissors" },
       { title: "Ecobag bordada", icon: "bag" },
     ],
+    map: { x: 78, y: 62 },
   },
   {
     slug: "casa-nova",
@@ -157,6 +165,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Customização jeans", icon: "scissors" },
       { title: "Bolsa reaproveitada", icon: "bag" },
     ],
+    map: { x: 62, y: 48 },
   },
 ];
 
