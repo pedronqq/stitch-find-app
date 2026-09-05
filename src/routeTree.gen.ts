@@ -15,6 +15,7 @@ import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as AteliesSlugRouteImport } from './routes/atelies.$slug'
 import { Route as CostureirasSlugRouteImport } from './routes/costureiras.$slug'
+import { Route as CursosSlugRouteImport } from './routes/cursos.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,31 +47,39 @@ const CostureirasSlugRoute = CostureirasSlugRouteImport.update({
   path: '/costureiras/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CursosSlugRoute = CursosSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CursosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cursos': typeof CursosRoute
+  '/cursos': typeof CursosRouteWithChildren
   '/mapa': typeof MapaRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
+  '/cursos/$slug': typeof CursosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cursos': typeof CursosRoute
+  '/cursos': typeof CursosRouteWithChildren
   '/mapa': typeof MapaRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
+  '/cursos/$slug': typeof CursosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cursos': typeof CursosRoute
+  '/cursos': typeof CursosRouteWithChildren
   '/mapa': typeof MapaRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
+  '/cursos/$slug': typeof CursosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
+    | '/cursos/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
+    | '/cursos/$slug'
   id:
     | '__root__'
     | '/'
@@ -97,11 +108,12 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
+    | '/cursos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CursosRoute: typeof CursosRoute
+  CursosRoute: typeof CursosRouteWithChildren
   MapaRoute: typeof MapaRoute
   PerfilRoute: typeof PerfilRoute
   AteliesSlugRoute: typeof AteliesSlugRoute
@@ -152,12 +164,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CostureirasSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cursos/$slug': {
+      id: '/cursos/$slug'
+      path: '/$slug'
+      fullPath: '/cursos/$slug'
+      preLoaderRoute: typeof CursosSlugRouteImport
+      parentRoute: typeof CursosRoute
+    }
   }
 }
 
+interface CursosRouteChildren {
+  CursosSlugRoute: typeof CursosSlugRoute
+}
+
+const CursosRouteChildren: CursosRouteChildren = {
+  CursosSlugRoute: CursosSlugRoute,
+}
+
+const CursosRouteWithChildren =
+  CursosRoute._addFileChildren(CursosRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CursosRoute: CursosRoute,
+  CursosRoute: CursosRouteWithChildren,
   MapaRoute: MapaRoute,
   PerfilRoute: PerfilRoute,
   AteliesSlugRoute: AteliesSlugRoute,
