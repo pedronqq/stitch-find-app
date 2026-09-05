@@ -48,9 +48,17 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
         </header>
 
         <div className="px-5">
-          <div className="flex aspect-[1.72] items-center justify-center rounded-3xl bg-profile-cover">
-            <Scissors className="h-28 w-28 text-profile-blue" strokeWidth={1.7} />
-          </div>
+          {provider.photo ? (
+            <img
+              src={provider.photo}
+              alt={`Foto de ${provider.name}`}
+              className="aspect-[1.72] w-full rounded-3xl object-cover"
+            />
+          ) : (
+            <div className="flex aspect-[1.72] items-center justify-center rounded-3xl bg-profile-cover">
+              <Scissors className="h-28 w-28 text-profile-blue" strokeWidth={1.7} />
+            </div>
+          )}
 
           <section className="pb-7 pt-7">
             <h1 className="text-[2rem] font-bold leading-tight">{provider.name}</h1>
