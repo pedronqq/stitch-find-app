@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { providerPhoto } from "@/lib/photos";
 import type { Provider } from "@/lib/providers";
 
 const portfolioIcons = {

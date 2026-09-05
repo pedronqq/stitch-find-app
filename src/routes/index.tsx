@@ -40,10 +40,11 @@ const FILTER_CHIPS: Record<Tab, string[]> = {
 };
 
 function AvatarBlock({ provider }: { provider: Provider }) {
-  if (provider.photo) {
+  const photo = providerPhoto(provider.slug);
+  if (photo) {
     return (
       <img
-        src={provider.photo}
+        src={photo}
         alt={`Foto de ${provider.name}`}
         className="h-20 w-20 shrink-0 rounded-2xl object-cover"
       />
