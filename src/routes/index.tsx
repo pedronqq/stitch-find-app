@@ -40,6 +40,15 @@ const FILTER_CHIPS: Record<Tab, string[]> = {
 };
 
 function AvatarBlock({ provider }: { provider: Provider }) {
+  if (provider.photo) {
+    return (
+      <img
+        src={provider.photo}
+        alt={`Foto de ${provider.name}`}
+        className="h-20 w-20 shrink-0 rounded-2xl object-cover"
+      />
+    );
+  }
   return (
     <div
       className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl"
