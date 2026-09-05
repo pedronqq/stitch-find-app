@@ -10,8 +10,6 @@ export type Provider = {
   distance: string;
   neighborhood: string;
   color: string;
-  /** Foto real do perfil (import de src/assets). Quando ausente, mostra o ícone. */
-  photo?: string;
   verified: boolean;
   price: string;
   about: string;
