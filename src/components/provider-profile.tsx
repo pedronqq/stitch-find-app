@@ -49,9 +49,9 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
         </header>
 
         <div className="px-5">
-          {provider.photo ? (
+          {providerPhoto(provider.slug) ? (
             <img
-              src={provider.photo}
+              src={providerPhoto(provider.slug)}
               alt={`Foto de ${provider.name}`}
               className="aspect-[1.72] w-full rounded-3xl object-cover"
             />

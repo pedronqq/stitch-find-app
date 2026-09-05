@@ -4,6 +4,7 @@ import { Scissors, Building2, Search, ChevronRight, MapPin, BadgeCheck } from "l
 import { Button } from "@/components/ui/button";
 import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
+import { providerPhoto } from "@/lib/photos";
 
 export const Route = createFileRoute("/")({
   head: () => ({
