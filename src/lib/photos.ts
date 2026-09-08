@@ -1,6 +1,6 @@
 /**
  * Fotos reais dos perfis. Basta colocar o arquivo em src/assets/photos/
- * com o nome igual ao slug do perfil (ex.: dona-lucia-costuras.jpg)
+ * com o nome igual ao slug do perfil (ex.: lucia-ferreira.jpg)
  * e a foto aparece automaticamente no card e na página do perfil.
  * Formatos aceitos: jpg, jpeg, png, webp.
  */
