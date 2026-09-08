@@ -32,7 +32,7 @@ export const Route = createFileRoute("/perfil")({
 
 function PerfilPage() {
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))]">
+    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-3xl md:px-8 md:pb-16 md:pt-24">
       <h1 className="text-2xl font-bold text-foreground">Perfil</h1>
 
       <div className="mt-5 flex items-center gap-4 rounded-3xl bg-card p-5 shadow-sm ring-1 ring-border/60">

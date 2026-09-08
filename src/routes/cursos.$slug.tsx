@@ -43,7 +43,7 @@ function CoursePage() {
 
   return (
     <div className="min-h-[100dvh] bg-profile-shell pb-32 text-foreground">
-      <main className="mx-auto w-full max-w-md bg-card">
+      <main className="mx-auto w-full max-w-md bg-card md:mt-8 md:max-w-3xl md:rounded-3xl md:shadow-sm">
         <header className="flex items-center justify-between px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
           <Button
             asChild
@@ -147,7 +147,7 @@ function CoursePage() {
         </div>
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md bg-card/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-profile-footer backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md md:max-w-3xl md:rounded-t-3xl bg-card/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-profile-footer backdrop-blur">
         <Button
           className="h-14 w-full rounded-2xl text-lg font-semibold shadow-profile-button"
           onClick={() => setEnrolled(true)}
