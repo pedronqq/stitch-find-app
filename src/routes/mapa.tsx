@@ -30,7 +30,7 @@ function MapaPage() {
   const [selected, setSelected] = useState<Provider | null>(null);
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background">
+    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background md:max-w-5xl md:px-8 md:pt-20">
       <header className="px-5 pt-[max(1.5rem,env(safe-area-inset-top))]">
         <h1 className="text-2xl font-bold text-foreground">Mapa</h1>
         <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -39,7 +39,7 @@ function MapaPage() {
         </p>
       </header>
 
-      <div className="relative mt-4 flex-1 overflow-hidden pb-20">
+      <div className="relative mt-4 flex-1 overflow-hidden pb-20 md:mb-10 md:rounded-3xl md:pb-0">
         <div className="profile-map absolute inset-0">
           <div className="profile-map-road profile-map-road-a" />
           <div className="profile-map-road profile-map-road-b" />
@@ -71,7 +71,7 @@ function MapaPage() {
         </div>
 
         {selected && (
-          <div className="absolute inset-x-3 bottom-24 z-30">
+          <div className="absolute inset-x-3 bottom-24 z-30 md:inset-x-auto md:bottom-6 md:left-6 md:w-96">
             <div className="rounded-3xl bg-card p-4 shadow-profile">
               <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
                 <div className="min-w-0">

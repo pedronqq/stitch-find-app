@@ -36,7 +36,7 @@ const ATELIES = PROVIDERS.filter((provider) => provider.type === "atelies");
 const LOCATION = "Rua Marquês de São Vicente, 225";
 
 const FILTER_CHIPS: Record<Tab, string[]> = {
-  costureiras: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Ajustes finos"],
+  costureiras: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Peças de decoração"],
   atelies: ["Consertos", "Roupas sob medida", "Alta costura", "Bordados"],
 };
 
@@ -120,7 +120,7 @@ function Index() {
   };
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))]">
+    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-5xl md:px-8 md:pb-16 md:pt-24">
       {/* Location (estática) */}
       <div>
         <p className="text-sm text-muted-foreground">Sua localização</p>
@@ -142,7 +142,7 @@ function Index() {
       </div>
 
       {/* Tabs */}
-      <div className="mt-6 grid grid-cols-2 gap-1 rounded-full bg-secondary p-1">
+      <div className="mt-6 grid grid-cols-2 gap-1 rounded-full bg-secondary p-1 md:max-w-md">
         <Button
           variant="ghost"
           onClick={() => selectTab("costureiras")}
@@ -188,7 +188,7 @@ function Index() {
       </div>
 
       {/* Results */}
-      <div className="mt-5 flex flex-col gap-3">
+      <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {results.length === 0 ? (
           <p className="py-12 text-center text-sm text-muted-foreground">
             Nenhum resultado encontrado.
