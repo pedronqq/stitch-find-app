@@ -36,7 +36,7 @@ function CursosPage() {
   );
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))]">
+    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-5xl md:px-8 md:pb-16 md:pt-24">
       <h1 className="text-2xl font-bold text-foreground">Cursos</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         Aprenda novas técnicas e destaque seu perfil na plataforma.
@@ -56,7 +56,7 @@ function CursosPage() {
         ))}
       </div>
 
-      <div className="mt-5 flex flex-col gap-3">
+      <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
         {results.map((course) => (
           <Link
             key={course.slug}

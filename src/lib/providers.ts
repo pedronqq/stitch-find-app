@@ -21,9 +21,9 @@ export type Provider = {
 
 export const PROVIDERS: Provider[] = [
   {
-    slug: "dona-lucia-costuras",
+    slug: "lucia-ferreira",
     type: "costureiras",
-    name: "Dona Lúcia Costuras",
+    name: "Lúcia Ferreira",
     rating: 4.9,
     reviews: 120,
     tags: ["Consertos", "Recriação de roupas"],
@@ -42,9 +42,9 @@ export const PROVIDERS: Provider[] = [
     map: { x: 32, y: 58 },
   },
   {
-    slug: "tia-joana-home",
+    slug: "joana-ribeiro",
     type: "costureiras",
-    name: "Tia Joana Home",
+    name: "Joana Ribeiro",
     rating: 4.7,
     reviews: 210,
     tags: ["Peças de decoração", "Consertos"],
@@ -63,12 +63,12 @@ export const PROVIDERS: Provider[] = [
     map: { x: 70, y: 30 },
   },
   {
-    slug: "atelier-da-marta",
+    slug: "marta-nogueira",
     type: "costureiras",
-    name: "Atelier da Marta",
+    name: "Marta Nogueira",
     rating: 4.8,
     reviews: 86,
-    tags: ["Roupas sob medida", "Ajustes finos"],
+    tags: ["Roupas sob medida", "Peças de decoração"],
     distance: "1.4 km",
     neighborhood: "Leblon",
     color: "var(--profile-green)",
@@ -84,9 +84,9 @@ export const PROVIDERS: Provider[] = [
     map: { x: 22, y: 34 },
   },
   {
-    slug: "seu-antonio-alfaiate",
+    slug: "antonio-moreira",
     type: "costureiras",
-    name: "Seu Antônio Alfaiate",
+    name: "Antônio Moreira",
     rating: 4.6,
     reviews: 54,
     tags: ["Roupas sob medida", "Consertos"],

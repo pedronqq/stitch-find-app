@@ -30,7 +30,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
   return (
     <div className="min-h-[100dvh] bg-profile-shell pb-32 text-foreground">
-      <main className="mx-auto w-full max-w-md bg-card">
+      <main className="mx-auto w-full max-w-md bg-card md:mt-8 md:max-w-3xl md:rounded-3xl md:shadow-sm">
         <header className="flex items-center justify-between px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
           <Button asChild variant="ghost" size="icon" className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary" aria-label="Voltar">
             <Link to="/">
@@ -113,7 +113,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
           <section>
             <h2 className="text-2xl font-bold">Portfólio</h2>
-            <div className="mt-5 grid grid-cols-3 gap-3">
+            <div className="mt-5 grid grid-cols-3 gap-3 md:gap-5">
               {provider.portfolio.map((item) => {
                 const Icon = portfolioIcons[item.icon];
                 return (
@@ -149,7 +149,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
         </div>
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md bg-card/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-profile-footer backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md bg-card/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-profile-footer backdrop-blur md:max-w-3xl md:rounded-t-3xl">
         <Button
           className="h-14 w-full rounded-2xl text-lg font-semibold shadow-profile-button"
           onClick={() => setContacted(true)}
