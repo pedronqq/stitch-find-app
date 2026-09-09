@@ -47,7 +47,7 @@ export default function RioMap({
       center,
       zoom,
       zoomControl: false,
-ىattributionControl: true,
+attributionControl: true,
     });
     L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
