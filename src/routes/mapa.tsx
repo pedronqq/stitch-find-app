@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Building2, ChevronRight, MapPin, Scissors, X } from "lucide-react";
+import { ChevronRight, MapPin, X } from "lucide-react";
 
 import { BottomNav } from "@/components/bottom-nav";
+import { MapView } from "@/components/map-view";
 import { PROVIDERS, type Provider } from "@/lib/providers";
 
 export const Route = createFileRoute("/mapa")({
@@ -40,34 +41,8 @@ function MapaPage() {
       </header>
 
       <div className="relative mt-4 flex-1 overflow-hidden pb-20 md:mb-10 md:rounded-3xl md:pb-0">
-        <div className="profile-map absolute inset-0">
-          <div className="profile-map-road profile-map-road-a" />
-          <div className="profile-map-road profile-map-road-b" />
-          <div className="profile-map-road profile-map-road-c" />
-
-          {PROVIDERS.map((provider) => {
-            const Icon = provider.type === "costureiras" ? Scissors : Building2;
-            const active = selected?.slug === provider.slug;
-            return (
-              <button
-                key={provider.slug}
-                type="button"
-                onClick={() => setSelected(provider)}
-                aria-label={provider.name}
-                className="absolute -translate-x-1/2 -translate-y-full"
-                style={{ left: `${provider.map.x}%`, top: `${provider.map.y}%` }}
-              >
-                <span
-                  className={`flex items-center justify-center rounded-full text-primary-foreground shadow-profile-action transition-transform ${
-                    active ? "h-12 w-12 scale-110" : "h-10 w-10"
-                  }`}
-                  style={{ backgroundColor: provider.color }}
-                >
-                  <Icon className={active ? "h-6 w-6" : "h-5 w-5"} />
-                </span>
-              </button>
-            );
-          })}
+        <div className="absolute inset-0 z-0">
+          <MapView providers={PROVIDERS} activeSlug={selected?.slug} onSelect={setSelected} />
         </div>
 
         {selected && (
