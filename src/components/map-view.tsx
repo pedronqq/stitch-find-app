@@ -14,7 +14,7 @@ type Props = {
   className?: string | undefined;
 };
 
-function Placeholder({ className }: { className?: string }) {
+function Placeholder({ className }: { className?: string | undefined }) {
   return <div className={`h-full w-full animate-pulse bg-secondary ${className ?? ""}`} />;
 }
 

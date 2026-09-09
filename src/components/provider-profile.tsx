@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { MapView } from "@/components/map-view";
 import { providerPhoto } from "@/lib/photos";
 import type { Provider } from "@/lib/providers";
 
