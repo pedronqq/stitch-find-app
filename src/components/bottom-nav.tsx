@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { CircleUserRound, GraduationCap, Map, Scissors, Search } from "lucide-react";
 
+import { ThemeToggle } from "@/components/theme-toggle";
+
 const ITEMS = [
   { to: "/", label: "Início", icon: Search },
   { to: "/mapa", label: "Mapa", icon: Map },
