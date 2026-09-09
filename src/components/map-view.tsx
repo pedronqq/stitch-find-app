@@ -7,11 +7,11 @@ const RioMap = lazy(() => import("@/components/rio-map"));
 
 type Props = {
   providers: Provider[];
-  center?: [number, number];
-  zoom?: number;
-  activeSlug?: string;
-  onSelect?: (provider: Provider) => void;
-  className?: string;
+  center?: [number, number] | undefined;
+  zoom?: number | undefined;
+  activeSlug?: string | undefined;
+  onSelect?: ((provider: Provider) => void) | undefined;
+  className?: string | undefined;
 };
 
 function Placeholder({ className }: { className?: string }) {
