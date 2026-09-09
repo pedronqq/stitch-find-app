@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { MapView } from "@/components/map-view";
 import { providerPhoto } from "@/lib/photos";
 import type { Provider } from "@/lib/providers";
 
@@ -130,20 +131,17 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
           <section>
             <h2 className="text-2xl font-bold">Local de Atendimento</h2>
-            <p className="mt-3 text-lg text-muted-foreground">{provider.neighborhood}</p>
-            <div className="profile-map relative mt-5 h-64 overflow-hidden rounded-2xl">
-              <div className="profile-map-road profile-map-road-a" />
-              <div className="profile-map-road profile-map-road-b" />
-              <div className="profile-map-road profile-map-road-c" />
-              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-profile-blue text-primary-foreground shadow-profile-action">
-                  <Scissors className="h-6 w-6" />
-                </span>
-                <span className="mt-1 max-w-48 truncate rounded bg-card/90 px-2 py-1 text-xs font-semibold shadow-sm">{provider.name}</span>
-              </div>
-              <span className="absolute bottom-3 left-3 flex items-center gap-1 rounded bg-card/90 px-2 py-1 text-xs font-semibold">
-                <MapPin className="h-3.5 w-3.5" /> {provider.neighborhood}
-              </span>
+            <p className="mt-3 flex items-center gap-1.5 text-lg text-muted-foreground">
+              <MapPin className="h-5 w-5 text-primary" />
+              {provider.neighborhood}, Rio de Janeiro
+            </p>
+            <div className="relative mt-5 h-64 overflow-hidden rounded-2xl">
+              <MapView
+                providers={[provider]}
+                center={[provider.coords.lat, provider.coords.lng]}
+                zoom={15}
+                activeSlug={provider.slug}
+              />
             </div>
           </section>
         </div>

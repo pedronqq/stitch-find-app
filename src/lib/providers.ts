@@ -17,6 +17,8 @@ export type Provider = {
   portfolio: { title: string; icon: "scissors" | "shirt" | "bag" }[];
   /** Posição relativa no mapa ilustrativo (0-100). */
   map: { x: number; y: number };
+  /** Coordenadas (fictícias) no Rio de Janeiro. */
+  coords: { lat: number; lng: number };
 };
 
 export const PROVIDERS: Provider[] = [
@@ -40,6 +42,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Reforma de blazer", icon: "bag" },
     ],
     map: { x: 32, y: 58 },
+    coords: { lat: -22.9772, lng: -43.2318 },
   },
   {
     slug: "joana-ribeiro",
@@ -61,6 +64,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Bolsa de tecido", icon: "bag" },
     ],
     map: { x: 70, y: 30 },
+    coords: { lat: -22.9711, lng: -43.1822 },
   },
   {
     slug: "marta-nogueira",
@@ -82,6 +86,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Reforma de vestido", icon: "bag" },
     ],
     map: { x: 22, y: 34 },
+    coords: { lat: -22.9847, lng: -43.2222 },
   },
   {
     slug: "antonio-moreira",
@@ -103,6 +108,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Reforma de terno", icon: "bag" },
     ],
     map: { x: 56, y: 72 },
+    coords: { lat: -22.9519, lng: -43.1808 },
   },
   {
     slug: "fio-e-forma",
@@ -124,6 +130,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Bolsa artesanal", icon: "bag" },
     ],
     map: { x: 45, y: 22 },
+    coords: { lat: -22.9741, lng: -43.2385 },
   },
   {
     slug: "oficina-do-tecido",
@@ -145,6 +152,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Ecobag bordada", icon: "bag" },
     ],
     map: { x: 78, y: 62 },
+    coords: { lat: -22.984, lng: -43.1986 },
   },
   {
     slug: "casa-nova",
@@ -166,6 +174,7 @@ export const PROVIDERS: Provider[] = [
       { title: "Bolsa reaproveitada", icon: "bag" },
     ],
     map: { x: 62, y: 48 },
+    coords: { lat: -22.9663, lng: -43.178 },
   },
 ];
 
