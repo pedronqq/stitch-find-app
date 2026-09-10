@@ -16,6 +16,8 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { MapView } from "@/components/map-view";
+import { RepositionableImage } from "@/components/repositionable-image";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { providerPhoto } from "@/lib/photos";
 import type { Provider } from "@/lib/providers";
 
@@ -38,15 +40,18 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
               <ChevronLeft className="h-7 w-7" strokeWidth={2.5} />
             </Link>
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary"
-            aria-label={favorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-            onClick={() => setFavorite((value) => !value)}
-          >
-            <Heart className={`h-7 w-7 ${favorite ? "fill-primary text-primary" : "text-foreground"}`} />
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle className="hidden h-12 w-12 bg-card shadow-profile-action hover:bg-secondary md:inline-flex" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary"
+              aria-label={favorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+              onClick={() => setFavorite((value) => !value)}
+            >
+              <Heart className={`h-7 w-7 ${favorite ? "fill-primary text-primary" : "text-foreground"}`} />
+            </Button>
+          </div>
         </header>
 
         <div className="px-5">
