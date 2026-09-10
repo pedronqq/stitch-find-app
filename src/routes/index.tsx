@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
 import { providerPhoto } from "@/lib/photos";
+import { chipStyle } from "@/lib/filter-colors";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -171,20 +172,22 @@ function Index() {
 
       {/* Filter chips */}
       <div className="mt-5 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {FILTER_CHIPS[tab].map((chip) => (
-          <Button
-            variant="ghost"
-            key={chip}
-            onClick={() => setActiveFilter(activeFilter === chip ? null : chip)}
-            className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              activeFilter === chip
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-accent"
-            }`}
-          >
-            {chip}
-          </Button>
-        ))}
+        {FILTER_CHIPS[tab].map((chip) => {
+          const active = activeFilter === chip;
+          return (
+            <Button
+              variant="ghost"
+              key={chip}
+              onClick={() => setActiveFilter(active ? null : chip)}
+              style={chipStyle(chip, active)}
+              className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all hover:bg-transparent ${
+                active ? "" : "hover:brightness-95"
+              }`}
+            >
+              {chip}
+            </Button>
+          );
+        })}
       </div>
 
       {/* Results */}

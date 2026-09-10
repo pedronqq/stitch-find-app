@@ -3,6 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 import type { Provider } from "@/lib/providers";
+import { chipColor } from "@/lib/filter-colors";
 
 type Props = {
   providers: Provider[];
@@ -15,6 +16,7 @@ type Props = {
 
 function pinIcon(provider: Provider, active: boolean) {
   const size = active ? 46 : 38;
+  const color = chipColor(provider.tags[0] ?? "");
   const glyph =
     provider.type === "costureiras"
       ? `<path d="M6 3l6 8m6-8l-6 8m-2 6a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm11 0a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>`
@@ -23,7 +25,7 @@ function pinIcon(provider: Provider, active: boolean) {
     className: "",
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
-    html: `<span style="display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px;border-radius:9999px;background:${provider.color};color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.25);border:2px solid #fff;transition:transform .2s">
+    html: `<span style="display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px;border-radius:9999px;background:${color};color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.25);border:2px solid #fff;transition:transform .2s">
       <svg width="${size * 0.5}" height="${size * 0.5}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${glyph}</svg>
     </span>`,
   });
