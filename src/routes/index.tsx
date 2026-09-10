@@ -38,7 +38,7 @@ const LOCATION = "Rua Marquês de São Vicente, 225";
 
 const FILTER_CHIPS: Record<Tab, string[]> = {
   costureiras: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Peças de decoração"],
-  atelies: ["Consertos", "Roupas sob medida", "Alta costura", "Bordados"],
+  atelies: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Peças de decoração"],
 };
 
 function AvatarBlock({ provider }: { provider: Provider }) {
@@ -137,7 +137,7 @@ function Index() {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscar costureiras…"
+          placeholder="Buscar…"
           className="w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
         />
       </div>
