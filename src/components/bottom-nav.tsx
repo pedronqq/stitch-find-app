@@ -57,6 +57,8 @@ export function BottomNav() {
                 {label}
               </Link>
             ))}
+            <span className="mx-1 h-6 w-px bg-border" />
+            <ThemeToggle />
           </div>
         </div>
       </nav>
