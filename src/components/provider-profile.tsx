@@ -56,10 +56,11 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
         <div className="px-5">
           {providerPhoto(provider.slug) ? (
-            <img
-              src={providerPhoto(provider.slug)}
+            <RepositionableImage
+              src={providerPhoto(provider.slug)!}
               alt={`Foto de ${provider.name}`}
-              className="aspect-[1.72] w-full rounded-3xl object-cover"
+              storageKey={provider.slug}
+              className="aspect-[1.72] w-full rounded-3xl"
             />
           ) : (
             <div className="flex aspect-[1.72] items-center justify-center rounded-3xl bg-profile-cover">
