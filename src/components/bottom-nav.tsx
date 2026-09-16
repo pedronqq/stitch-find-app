@@ -32,8 +32,9 @@ export function BottomNav() {
             <Link
               key={to}
               to={to}
+              viewTransition
               activeOptions={{ exact: to === "/" }}
-              className="flex flex-col items-center justify-center gap-0.5 rounded-2xl py-1.5 text-[0.7rem] font-medium text-muted-foreground transition-colors"
+              className="flex flex-col items-center justify-center gap-0.5 rounded-2xl py-1.5 text-[0.7rem] font-medium text-muted-foreground transition-all active:scale-90"
               activeProps={{ className: "text-primary font-semibold" }}
             >
               <Icon className="h-6 w-6" />
@@ -49,7 +50,11 @@ export function BottomNav() {
         aria-label="Navegação principal"
       >
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-8">
-          <Link to="/" className="flex items-center gap-2 font-bold text-foreground">
+          <Link
+            to="/"
+            viewTransition
+            className="flex items-center gap-2 font-bold text-foreground transition-transform active:scale-95"
+          >
             <Scissors className="h-5 w-5 text-primary" />
             Costurando
           </Link>
@@ -58,8 +63,9 @@ export function BottomNav() {
               <Link
                 key={to}
                 to={to}
+                viewTransition
                 activeOptions={{ exact: to === "/" }}
-                className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground active:scale-95"
                 activeProps={{ className: "bg-secondary text-primary font-semibold" }}
               >
                 <Icon className="h-4 w-4" />

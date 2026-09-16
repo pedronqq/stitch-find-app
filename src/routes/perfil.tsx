@@ -62,7 +62,7 @@ function PerfilPage() {
         <button
           type="button"
           onClick={() => setRole("cliente")}
-          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             role === "cliente" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
         >
@@ -72,7 +72,7 @@ function PerfilPage() {
         <button
           type="button"
           onClick={() => setRole("prestadora")}
-          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             role === "prestadora" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
         >
@@ -100,10 +100,11 @@ function PerfilPage() {
       </div>
 
       <div className="mt-4 overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border/60">
-        {items.map(({ label, icon: Icon }) => (
+        {items.map(({ label, icon: Icon }, index) => (
           <div
             key={label}
-            className="flex items-center gap-3 border-b border-border/60 px-4 py-4 last:border-b-0"
+            className="flex items-center gap-3 border-b border-border/60 px-4 py-4 transition-colors last:border-b-0 active:bg-secondary/60"
+            style={{ animationDelay: `${index * 40}ms` }}
           >
             <Icon className="h-5 w-5 shrink-0 text-primary" />
             <span className="min-w-0 flex-1 truncate text-foreground">{label}</span>

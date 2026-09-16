@@ -108,12 +108,14 @@ function AvatarBlock({ provider }: { provider: Provider }) {
   );
 }
 
-function ProviderCard({ provider }: { provider: Provider }) {
+function ProviderCard({ provider, index }: { provider: Provider; index: number }) {
   return (
     <Link
       to={provider.type === "costureiras" ? "/costureiras/$slug" : "/atelies/$slug"}
       params={{ slug: provider.slug }}
-      className="group flex w-full items-center gap-4 rounded-2xl bg-card p-4 text-left shadow-sm ring-1 ring-border/60 transition-shadow hover:shadow-md"
+      viewTransition
+      style={{ animationDelay: `${Math.min(index, 8) * 45}ms` }}
+      className="group flex w-full animate-in items-center gap-4 rounded-2xl bg-card p-4 text-left shadow-sm ring-1 ring-border/60 fade-in slide-in-from-bottom-2 transition-all duration-300 hover:shadow-md active:scale-[0.98]"
     >
       <AvatarBlock provider={provider} />
       <div className="min-w-0 flex-1">
@@ -184,7 +186,7 @@ function Index() {
             size="sm"
             onClick={requestLocation}
             disabled={locationStatus === "loading"}
-            className="shrink-0 gap-1.5 rounded-full px-3 text-xs font-semibold text-primary hover:bg-secondary"
+            className="shrink-0 gap-1.5 rounded-full px-3 text-xs font-semibold text-primary transition-transform hover:bg-secondary active:scale-95"
           >
             <LocateFixed className="h-4 w-4" />
             Usar atual
@@ -213,7 +215,7 @@ function Index() {
         <Button
           variant="ghost"
           onClick={() => selectTab("costureiras")}
-          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             tab === "costureiras"
               ? "bg-card text-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
@@ -225,7 +227,7 @@ function Index() {
         <Button
           variant="ghost"
           onClick={() => selectTab("atelies")}
-          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             tab === "atelies"
               ? "bg-card text-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
@@ -246,7 +248,7 @@ function Index() {
               key={chip}
               onClick={() => setActiveFilter(active ? null : chip)}
               style={chipStyle(chip, active)}
-              className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all hover:bg-transparent ${
+              className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-95 hover:bg-transparent ${
                 active ? "" : "hover:brightness-95"
               }`}
             >
@@ -257,13 +259,13 @@ function Index() {
       </div>
 
       {/* Results */}
-      <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div key={`${tab}-${activeFilter ?? "all"}`} className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {results.length === 0 ? (
           <p className="py-12 text-center text-sm text-muted-foreground">
             Nenhum resultado encontrado.
           </p>
         ) : (
-          results.map((p) => <ProviderCard key={p.name} provider={p} />)
+          results.map((p, index) => <ProviderCard key={p.name} provider={p} index={index} />)
         )}
       </div>
 

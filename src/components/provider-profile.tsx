@@ -35,8 +35,14 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
     <div className="min-h-[100dvh] bg-profile-shell pb-32 text-foreground">
       <main className="mx-auto w-full max-w-md bg-card md:mt-8 md:max-w-3xl md:rounded-3xl md:shadow-sm">
         <header className="flex items-center justify-between px-5 pb-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
-          <Button asChild variant="ghost" size="icon" className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary" aria-label="Voltar">
-            <Link to="/">
+          <Button
+            asChild
+            variant="ghost"
+            size="icon"
+            className="h-12 w-12 rounded-full bg-card shadow-profile-action transition-transform hover:bg-secondary active:scale-90"
+            aria-label="Voltar"
+          >
+            <Link to="/" viewTransition>
               <ChevronLeft className="h-7 w-7" strokeWidth={2.5} />
             </Link>
           </Button>
@@ -45,7 +51,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-12 w-12 rounded-full bg-card shadow-profile-action hover:bg-secondary"
+              className="h-12 w-12 rounded-full bg-card shadow-profile-action transition-transform hover:bg-secondary active:scale-90"
               aria-label={favorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
               onClick={() => setFavorite((value) => !value)}
             >
@@ -121,11 +127,15 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
           <section>
             <h2 className="text-2xl font-bold">Trabalhos Realizados</h2>
             <div className="mt-5 grid grid-cols-3 gap-3 md:gap-5">
-              {provider.portfolio.map((item) => {
+              {provider.portfolio.map((item, index) => {
                 const Icon = portfolioIcons[item.icon];
                 return (
-                  <div key={item.title} className="min-w-0">
-                    <div className="flex aspect-square items-center justify-center rounded-2xl bg-profile-media">
+                  <div
+                    key={item.title}
+                    className="min-w-0 animate-in fade-in slide-in-from-bottom-2 duration-300"
+                    style={{ animationDelay: `${index * 60}ms` }}
+                  >
+                    <div className="flex aspect-square items-center justify-center rounded-2xl bg-profile-media transition-transform active:scale-95">
                       <Icon className="h-10 w-10 text-profile-blue" strokeWidth={2.3} />
                     </div>
                     <p className="mt-2 text-sm leading-snug text-muted-foreground">{item.title}</p>
@@ -155,7 +165,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
       <div className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md bg-card/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-profile-footer backdrop-blur md:max-w-3xl md:rounded-t-3xl">
         <Button
-          className="h-14 w-full rounded-2xl text-lg font-semibold shadow-profile-button"
+          className="h-14 w-full rounded-2xl text-lg font-semibold shadow-profile-button transition-transform active:scale-[0.98]"
           onClick={() => setContacted(true)}
         >
           {contacted ? <Check className="h-6 w-6" /> : <MessageCircle className="h-6 w-6 fill-current" />}
