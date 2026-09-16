@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Scissors, Building2, Search, ChevronRight, MapPin, BadgeCheck } from "lucide-react";
+import { Scissors, Building2, Search, ChevronRight, MapPin, BadgeCheck, LocateFixed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
@@ -10,17 +10,17 @@ import { chipStyle } from "@/lib/filter-colors";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Costura Fácil — Encontre costureiras e ateliês perto de você" },
+      { title: "Costura Fácil — Encontre costureiras e atiliês perto de você" },
       {
         name: "description",
         content:
-          "Busque costureiras e ateliês perto de você, filtre por serviço e encontre o profissional ideal para consertos e roupas sob medida.",
+          "Busque costureiras e atiliês perto de você, filtre por serviço e encontre o profissional ideal para consertos e roupas sob medida.",
       },
-      { property: "og:title", content: "Costura Fácil — Costureiras e ateliês perto de você" },
+      { property: "og:title", content: "Costura Fácil — Costureiras e atiliês perto de você" },
       {
         property: "og:description",
         content:
-          "Busque costureiras e ateliês perto de você, filtre por serviço e encontre o profissional ideal.",
+          "Busque costureiras e atiliês perto de você, filtre por serviço e encontre o profissional ideal.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -34,12 +34,58 @@ type Tab = ProviderType;
 const COSTUREIRAS = PROVIDERS.filter((provider) => provider.type === "costureiras");
 const ATELIES = PROVIDERS.filter((provider) => provider.type === "atelies");
 
-const LOCATION = "Rua Marquês de São Vicente, 225";
+const FALLBACK_LOCATION = "Rua Marquês de São Vicente, 225";
 
 const FILTER_CHIPS: Record<Tab, string[]> = {
   costureiras: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Peças de decoração"],
   atelies: ["Consertos", "Roupas sob medida", "Recriação de roupas", "Peças de decoração"],
 };
+
+type LocationStatus = "idle" | "loading" | "error";
+
+function useCurrentLocationLabel(fallback: string) {
+  const [label, setLabel] = useState(fallback);
+  const [status, setStatus] = useState<LocationStatus>("idle");
+
+  function requestLocation() {
+    if (typeof navigator === "undefined" || !("geolocation" in navigator)) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          );
+          const data = await response.json();
+          const address = data?.address ?? {};
+          const street = address.road || address.pedestrian || address.suburb || "";
+          const number = address.house_number ? `, ${address.house_number}` : "";
+          const neighborhood = address.suburb || address.neighbourhood || address.city_district || "";
+          const formatted = [[street, number].filter(Boolean).join(""), neighborhood]
+            .filter(Boolean)
+            .join(" — ");
+
+          setLabel(formatted || data?.display_name || fallback);
+          setStatus("idle");
+        } catch {
+          setStatus("error");
+        }
+      },
+      () => {
+        setStatus("error");
+      },
+      { enableHighAccuracy: true, timeout: 8000 }
+    );
+  }
+
+  return { label, status, requestLocation };
+}
 
 function AvatarBlock({ provider }: { provider: Provider }) {
   const photo = providerPhoto(provider.slug);
@@ -95,6 +141,7 @@ function Index() {
   const [tab, setTab] = useState<Tab>("costureiras");
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const { label: location, status: locationStatus, requestLocation } = useCurrentLocationLabel(FALLBACK_LOCATION);
 
   const providers = tab === "costureiras" ? COSTUREIRAS : ATELIES;
 
@@ -122,13 +169,32 @@ function Index() {
 
   return (
     <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-5xl md:px-8 md:pb-16 md:pt-24">
-      {/* Location (estática) */}
+      {/* Localização */}
       <div>
         <p className="text-sm text-muted-foreground">Sua localização</p>
-        <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
-          <MapPin className="h-5 w-5 shrink-0 text-primary" />
-          <span className="truncate">{LOCATION}</span>
-        </p>
+        <div className="mt-1 flex items-center justify-between gap-2">
+          <p className="flex min-w-0 items-center gap-1.5 text-lg font-bold text-foreground">
+            <MapPin className="h-5 w-5 shrink-0 text-primary" />
+            <span className="truncate">
+              {locationStatus === "loading" ? "Buscando localização…" : location}
+            </span>
+          </p>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={requestLocation}
+            disabled={locationStatus === "loading"}
+            className="shrink-0 gap-1.5 rounded-full px-3 text-xs font-semibold text-primary hover:bg-secondary"
+          >
+            <LocateFixed className="h-4 w-4" />
+            Usar atual
+          </Button>
+        </div>
+        {locationStatus === "error" && (
+          <p className="mt-1 text-xs text-destructive">
+            Não conseguimos acessar sua localização. Verifique a permissão do navegador.
+          </p>
+        )}
       </div>
 
       {/* Search bar */}
