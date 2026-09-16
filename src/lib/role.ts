@@ -5,6 +5,7 @@ export type Role = "cliente" | "prestadora";
 const STORAGE_KEY = "costurando-role";
 const EVENT_NAME = "costurando-role-change";
 const LOADING_EVENT_NAME = "costurando-role-loading";
+const ROLE_LOADING_DURATION = 2000;
 
 function readRole(): Role {
   if (typeof window === "undefined") return "cliente";
@@ -54,7 +55,7 @@ export function useRole() {
       setRoleState(next);
       setIsChangingRole(false);
       window.dispatchEvent(new CustomEvent<boolean>(LOADING_EVENT_NAME, { detail: false }));
-    }, 5000);
+    }, ROLE_LOADING_DURATION);
   }
 
   return { role, setRole, isChangingRole };

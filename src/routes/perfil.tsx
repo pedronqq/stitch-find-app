@@ -125,9 +125,6 @@ function PerfilPage() {
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Estamos alternando para o modo {role === "cliente" ? "prestadora de serviço" : "cliente"}.
           </p>
-          <div className="mt-5 h-1.5 w-48 overflow-hidden rounded-full bg-secondary">
-            <div className="h-full w-1/2 animate-pulse rounded-full bg-primary" />
-          </div>
         </div>
       )}
 
