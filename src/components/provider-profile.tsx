@@ -119,7 +119,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold">Portfólio</h2>
+            <h2 className="text-2xl font-bold">Trabalhos Realizados</h2>
             <div className="mt-5 grid grid-cols-3 gap-3 md:gap-5">
               {provider.portfolio.map((item) => {
                 const Icon = portfolioIcons[item.icon];
