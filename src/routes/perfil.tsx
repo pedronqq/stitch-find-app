@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   BadgeCheck,
   Bell,
@@ -14,8 +13,7 @@ import {
 } from "lucide-react";
 
 import { BottomNav } from "@/components/bottom-nav";
-
-type Role = "cliente" | "prestadora";
+import { useRole } from "@/lib/role";
 
 const CLIENT_ITEMS = [
   { label: "Favoritos", icon: Heart },
@@ -35,15 +33,15 @@ const PROVIDER_ITEMS = [
 export const Route = createFileRoute("/perfil")({
   head: () => ({
     meta: [
-      { title: "Meu perfil — Costura Fácil" },
+      { title: "Meu perfil — Costurando" },
       {
         name: "description",
-        content: "Gerencie seus favoritos, endereço, notificações e preferências no Costura Fácil.",
+        content: "Gerencie seus favoritos, endereço, notificações e preferências no Costurando.",
       },
-      { property: "og:title", content: "Meu perfil — Costura Fácil" },
+      { property: "og:title", content: "Meu perfil — Costurando" },
       {
         property: "og:description",
-        content: "Favoritos, endereço e preferências da sua conta Costura Fácil.",
+        content: "Favoritos, endereço e preferências da sua conta Costurando.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -53,7 +51,7 @@ export const Route = createFileRoute("/perfil")({
 });
 
 function PerfilPage() {
-  const [role, setRole] = useState<Role>("cliente");
+  const { role, setRole } = useRole();
   const items = role === "cliente" ? CLIENT_ITEMS : PROVIDER_ITEMS;
 
   return (

@@ -1,16 +1,25 @@
 import { Link } from "@tanstack/react-router";
-import { CircleUserRound, GraduationCap, Map, Scissors, Search } from "lucide-react";
+import { CircleUserRound, GraduationCap, Map, MessageCircle, Scissors, Search } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useRole } from "@/lib/role";
 
-const ITEMS = [
+const CLIENT_ITEMS = [
   { to: "/", label: "Início", icon: Search },
   { to: "/mapa", label: "Mapa", icon: Map },
+  { to: "/perfil", label: "Perfil", icon: CircleUserRound },
+] as const;
+
+const PROVIDER_ITEMS = [
+  { to: "/mensagens", label: "Mensagens", icon: MessageCircle },
   { to: "/cursos", label: "Cursos", icon: GraduationCap },
   { to: "/perfil", label: "Perfil", icon: CircleUserRound },
 ] as const;
 
 export function BottomNav() {
+  const { role } = useRole();
+  const items = role === "cliente" ? CLIENT_ITEMS : PROVIDER_ITEMS;
+
   return (
     <>
       {/* Mobile: barra inferior */}
@@ -18,8 +27,8 @@ export function BottomNav() {
         className="fixed inset-x-0 bottom-0 z-40 mx-auto w-full max-w-md border-t border-border bg-card/95 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"
         aria-label="Navegação principal"
       >
-        <div className="grid grid-cols-4">
-          {ITEMS.map(({ to, label, icon: Icon }) => (
+        <div className="grid grid-cols-3">
+          {items.map(({ to, label, icon: Icon }) => (
             <Link
               key={to}
               to={to}
@@ -45,7 +54,7 @@ export function BottomNav() {
             Costurando
           </Link>
           <div className="flex items-center gap-1">
-            {ITEMS.map(({ to, label, icon: Icon }) => (
+            {items.map(({ to, label, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
