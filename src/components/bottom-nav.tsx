@@ -42,7 +42,7 @@ export function BottomNav() {
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-8">
           <Link to="/" className="flex items-center gap-2 font-bold text-foreground">
             <Scissors className="h-5 w-5 text-primary" />
-            Costura Fácil
+            Costurando
           </Link>
           <div className="flex items-center gap-1">
             {ITEMS.map(({ to, label, icon: Icon }) => (
