@@ -4,6 +4,7 @@ export type Role = "cliente" | "prestadora";
 
 const STORAGE_KEY = "costurando-role";
 const EVENT_NAME = "costurando-role-change";
+const LOADING_EVENT_NAME = "costurando-role-loading";
 
 function readRole(): Role {
   if (typeof window === "undefined") return "cliente";
@@ -16,28 +17,45 @@ function writeRole(role: Role) {
   window.dispatchEvent(new CustomEvent<Role>(EVENT_NAME, { detail: role }));
 }
 
-/**
- * Hook compartilhado para o papel ativo (Cliente ou Prestadora de serviço).
- * Persiste no localStorage e sincroniza entre componentes via CustomEvent,
- * assim a navegação (BottomNav) e a tela de Perfil ficam sempre de acordo.
- */
 export function useRole() {
   const [role, setRoleState] = useState<Role>(readRole);
+  const [isChangingRole, setIsChangingRole] = useState(false);
 
   useEffect(() => {
     setRoleState(readRole());
+
     function handleChange(event: Event) {
       const detail = (event as CustomEvent<Role>).detail;
       if (detail) setRoleState(detail);
     }
+
+    function handleLoading(event: Event) {
+      const detail = (event as CustomEvent<boolean>).detail;
+      setIsChangingRole(Boolean(detail));
+    }
+
     window.addEventListener(EVENT_NAME, handleChange);
-    return () => window.removeEventListener(EVENT_NAME, handleChange);
+    window.addEventListener(LOADING_EVENT_NAME, handleLoading);
+
+    return () => {
+      window.removeEventListener(EVENT_NAME, handleChange);
+      window.removeEventListener(LOADING_EVENT_NAME, handleLoading);
+    };
   }, []);
 
   function setRole(next: Role) {
-    writeRole(next);
-    setRoleState(next);
+    if (next === role || isChangingRole) return;
+
+    setIsChangingRole(true);
+    window.dispatchEvent(new CustomEvent<boolean>(LOADING_EVENT_NAME, { detail: true }));
+
+    window.setTimeout(() => {
+      writeRole(next);
+      setRoleState(next);
+      setIsChangingRole(false);
+      window.dispatchEvent(new CustomEvent<boolean>(LOADING_EVENT_NAME, { detail: false }));
+    }, 5000);
   }
 
-  return { role, setRole };
+  return { role, setRole, isChangingRole };
 }

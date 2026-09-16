@@ -8,6 +8,7 @@ import {
   GraduationCap,
   Heart,
   Images,
+  LoaderCircle,
   MapPin,
   Settings,
 } from "lucide-react";
@@ -51,17 +52,18 @@ export const Route = createFileRoute("/perfil")({
 });
 
 function PerfilPage() {
-  const { role, setRole } = useRole();
+  const { role, setRole, isChangingRole } = useRole();
   const items = role === "cliente" ? CLIENT_ITEMS : PROVIDER_ITEMS;
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-3xl md:px-8 md:pb-16 md:pt-24">
+    <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-md flex-col bg-background px-5 pb-28 pt-[max(1.5rem,env(safe-area-inset-top))] md:max-w-3xl md:px-8 md:pb-16 md:pt-24">
       <h1 className="text-2xl font-bold text-foreground">Perfil</h1>
 
-      <div className="mt-4 grid grid-cols-2 gap-1 rounded-full bg-secondary p-1">
+      <div className={`mt-4 grid grid-cols-2 gap-1 rounded-full bg-secondary p-1 transition-opacity ${isChangingRole ? "pointer-events-none opacity-50" : ""}`}>
         <button
           type="button"
           onClick={() => setRole("cliente")}
+          disabled={isChangingRole}
           className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             role === "cliente" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
@@ -72,6 +74,7 @@ function PerfilPage() {
         <button
           type="button"
           onClick={() => setRole("prestadora")}
+          disabled={isChangingRole}
           className={`flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-semibold transition-all active:scale-95 ${
             role === "prestadora" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
@@ -81,7 +84,7 @@ function PerfilPage() {
         </button>
       </div>
 
-      <div className="mt-4 flex items-center gap-4 rounded-3xl bg-card p-5 shadow-sm ring-1 ring-border/60">
+      <div className={`mt-4 flex items-center gap-4 rounded-3xl bg-card p-5 shadow-sm ring-1 ring-border/60 transition-opacity ${isChangingRole ? "opacity-30" : ""}`}>
         <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-secondary text-primary">
           <CircleUserRound className="h-9 w-9" />
         </span>
@@ -99,7 +102,7 @@ function PerfilPage() {
         </div>
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border/60">
+      <div className={`mt-4 overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border/60 transition-opacity ${isChangingRole ? "opacity-30" : ""}`}>
         {items.map(({ label, icon: Icon }, index) => (
           <div
             key={label}
@@ -112,6 +115,21 @@ function PerfilPage() {
           </div>
         ))}
       </div>
+
+      {isChangingRole && (
+        <div className="absolute inset-0 z-50 flex min-h-[100dvh] flex-col items-center justify-center bg-background/90 px-8 text-center backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <LoaderCircle className="h-10 w-10 animate-spin" />
+          </div>
+          <h2 className="mt-5 text-xl font-bold text-foreground">Preparando seu espaço</h2>
+          <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Estamos alternando para o modo {role === "cliente" ? "prestadora de serviço" : "cliente"}.
+          </p>
+          <div className="mt-5 h-1.5 w-48 overflow-hidden rounded-full bg-secondary">
+            <div className="h-full w-1/2 animate-pulse rounded-full bg-primary" />
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </div>
