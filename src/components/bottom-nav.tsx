@@ -57,7 +57,7 @@ export function BottomNav() {
             viewTransition
             className="flex items-center gap-2 font-bold text-foreground transition-transform active:scale-95"
           >
-            <img src="/favicon.svg" alt="" className="h-8 w-8" />
+            <span aria-hidden="true" className="inline-block h-8 w-8 bg-foreground" style={{ WebkitMask: "url(/favicon.svg) center/contain no-repeat", mask: "url(/favicon.svg) center/contain no-repeat" }} />
             Nossas Costureiras
           </Link>
           <div className="flex items-center gap-1">
