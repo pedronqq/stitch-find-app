@@ -11,7 +11,7 @@ import { chipStyle } from "@/lib/filter-colors";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nossas Costureiras — Encontre costureiras e ateliês perto de você" },
+      { title: "Nossas Costureiras — Encontre costureiras autônomas e ateliês de costura perto de você" },
       {
         name: "description",
         content:
