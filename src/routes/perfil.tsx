@@ -4,15 +4,14 @@ import {
   Briefcase,
   ChevronRight,
   CircleUserRound,
-  GraduationCap,
   Heart,
-  Images,
   LoaderCircle,
   MapPin,
   Settings,
 } from "lucide-react";
 
 import { BottomNav } from "@/components/bottom-nav";
+import { CursosIcon, TrabalhosIcon } from "@/components/custom-icons";
 import { useRole } from "@/lib/role";
 
 const CLIENT_ITEMS = [
@@ -24,8 +23,8 @@ const CLIENT_ITEMS = [
 
 const PROVIDER_ITEMS = [
   { label: "Meus serviços", icon: Briefcase },
-  { label: "Trabalhos realizados", icon: Images },
-  { label: "Cursos concluídos", icon: GraduationCap },
+  { label: "Trabalhos realizados", icon: TrabalhosIcon },
+  { label: "Cursos concluídos", icon: CursosIcon },
   { label: "Configurações", icon: Settings },
 ];
 

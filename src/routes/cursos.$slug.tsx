@@ -6,7 +6,6 @@ import {
   Check,
   ChevronLeft,
   Clock,
-  GraduationCap,
   ListChecks,
   PlayCircle,
   Users,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CursosIcon } from "@/components/custom-icons";
 import { getCourse } from "@/lib/courses";
 
 export const Route = createFileRoute("/cursos/$slug")({
@@ -63,7 +63,7 @@ function CoursePage() {
 
         <div className="px-5">
           <div className="flex aspect-[1.72] items-center justify-center rounded-3xl bg-profile-cover">
-            <GraduationCap className="h-28 w-28 text-profile-blue" strokeWidth={1.5} />
+            <CursosIcon className="h-28 w-28 text-profile-blue" />
           </div>
 
           <section className="pb-7 pt-7">

@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   Check,
   ChevronLeft,
-  GraduationCap,
   Heart,
   MapPin,
   MessageCircle,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { AteliesIcon, CostureirasIcon, CursosIcon, TrabalhosIcon } from "@/components/custom-icons";
 import { MapView } from "@/components/map-view";
 import { RepositionableImage } from "@/components/repositionable-image";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -68,7 +68,11 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
             />
           ) : (
             <div className="flex aspect-[1.72] items-center justify-center rounded-3xl bg-profile-cover">
-              <Scissors className="h-28 w-28 text-profile-blue" strokeWidth={1.7} />
+              {provider.type === "costureiras" ? (
+                <CostureirasIcon className="h-28 w-28 text-profile-blue" />
+              ) : (
+                <AteliesIcon className="h-28 w-28 text-profile-blue" />
+              )}
             </div>
           )}
 
@@ -87,7 +91,7 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
           <section>
             <div className="flex items-center gap-3">
-              <GraduationCap className="h-8 w-8 text-profile-course" />
+              <CursosIcon className="h-8 w-8 text-profile-course" />
               <h2 className="text-2xl font-bold">Formação e Aprendizado</h2>
             </div>
             <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -116,7 +120,10 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold">Trabalhos Realizados</h2>
+            <div className="flex items-center gap-3">
+              <TrabalhosIcon className="h-8 w-8 text-profile-blue" />
+              <h2 className="text-2xl font-bold">Trabalhos Realizados</h2>
+            </div>
             <div className="mt-5 grid grid-cols-3 gap-3 md:gap-5">
               {provider.portfolio.map((item, index) => {
                 const Icon = portfolioIcons[item.icon];

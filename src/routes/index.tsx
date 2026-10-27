@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Scissors, Building2, Search, ChevronRight, MapPin, LocateFixed } from "lucide-react";
+import { Search, ChevronRight, MapPin, LocateFixed } from "lucide-react";
+import { AteliesIcon, CostureirasIcon } from "@/components/custom-icons";
 import { Button } from "@/components/ui/button";
 import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
@@ -103,7 +104,11 @@ function AvatarBlock({ provider }: { provider: Provider }) {
       className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl"
       style={{ backgroundColor: `color-mix(in oklab, ${provider.color} 12%, white)` }}
     >
-      <Scissors className="h-9 w-9" style={{ color: provider.color }} strokeWidth={1.8} />
+      {provider.type === "costureiras" ? (
+        <CostureirasIcon className="h-9 w-9" style={{ color: provider.color }} />
+      ) : (
+        <AteliesIcon className="h-9 w-9" style={{ color: provider.color }} />
+      )}
     </div>
   );
 }
@@ -218,7 +223,7 @@ function Index() {
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <Scissors className="h-4 w-4" />
+          <CostureirasIcon className="h-5 w-5" />
           Costureiras
         </Button>
         <Button
@@ -230,7 +235,7 @@ function Index() {
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <Building2 className="h-4 w-4" />
+          <AteliesIcon className="h-5 w-5" />
           Ateliês
         </Button>
       </div>
