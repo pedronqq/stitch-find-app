@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
         content:
           "Busque costureiras e ateliês perto de você, filtre por serviço e encontre o profissional ideal para consertos e roupas sob medida.",
       },
-      { property: "og:title", content: "Nossas Costureiras — Costureiras e ateliês perto de você" },
+      { property: "og:title", content: "Nossas Costureiras — Costureiras autônomas e Ateliês de costura perto de você" },
       {
         property: "og:description",
         content:
