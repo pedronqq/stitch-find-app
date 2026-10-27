@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CursosRouteImport } from './routes/cursos'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as MensagensRouteImport } from './routes/mensagens'
 import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as AteliesSlugRouteImport } from './routes/atelies.$slug'
 import { Route as CostureirasSlugRouteImport } from './routes/costureiras.$slug'
@@ -31,6 +32,11 @@ const CursosRoute = CursosRouteImport.update({
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MensagensRoute = MensagensRouteImport.update({
+  id: '/mensagens',
+  path: '/mensagens',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PerfilRoute = PerfilRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cursos': typeof CursosRouteWithChildren
   '/mapa': typeof MapaRoute
+  '/mensagens': typeof MensagensRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/mapa': typeof MapaRoute
+  '/mensagens': typeof MensagensRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cursos': typeof CursosRouteWithChildren
   '/mapa': typeof MapaRoute
+  '/mensagens': typeof MensagensRoute
   '/perfil': typeof PerfilRoute
   '/atelies/$slug': typeof AteliesSlugRoute
   '/costureiras/$slug': typeof CostureirasSlugRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cursos'
     | '/mapa'
+    | '/mensagens'
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/mapa'
+    | '/mensagens'
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cursos'
     | '/mapa'
+    | '/mensagens'
     | '/perfil'
     | '/atelies/$slug'
     | '/costureiras/$slug'
@@ -125,6 +137,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CursosRoute: typeof CursosRouteWithChildren
   MapaRoute: typeof MapaRoute
+  MensagensRoute: typeof MensagensRoute
   PerfilRoute: typeof PerfilRoute
   AteliesSlugRoute: typeof AteliesSlugRoute
   CostureirasSlugRoute: typeof CostureirasSlugRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mensagens': {
+      id: '/mensagens'
+      path: '/mensagens'
+      fullPath: '/mensagens'
+      preLoaderRoute: typeof MensagensRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/perfil': {
@@ -208,6 +228,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CursosRoute: CursosRouteWithChildren,
   MapaRoute: MapaRoute,
+  MensagensRoute: MensagensRoute,
   PerfilRoute: PerfilRoute,
   AteliesSlugRoute: AteliesSlugRoute,
   CostureirasSlugRoute: CostureirasSlugRoute,
