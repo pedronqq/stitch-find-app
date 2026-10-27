@@ -1,12 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  BadgeCheck,
   Check,
   ChevronLeft,
   GraduationCap,
   Heart,
-  Info,
   MapPin,
   MessageCircle,
   Scissors,
@@ -76,13 +74,6 @@ export function ProviderProfile({ provider }: { provider: Provider }) {
 
           <section className="pb-7 pt-7">
             <h1 className="text-[2rem] font-bold leading-tight">{provider.name}</h1>
-            {provider.verified && (
-              <div className="mt-3 flex items-center gap-2 text-sm font-semibold text-profile-blue">
-                <BadgeCheck className="h-5 w-5 fill-profile-blue text-primary-foreground" />
-                Documento verificado
-                <Info className="h-4 w-4 text-muted-foreground" />
-              </div>
-            )}
           </section>
         </div>
 

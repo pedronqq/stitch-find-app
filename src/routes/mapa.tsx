@@ -9,13 +9,13 @@ import { PROVIDERS, type Provider } from "@/lib/providers";
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [
-      { title: "Mapa de costureiras e ateliês — Costura Fácil" },
+      { title: "Mapa de costureiras e ateliês — Nossas Costureiras" },
       {
         name: "description",
         content:
           "Veja no mapa as costureiras e os ateliês próximos, toque em um marcador e abra o perfil completo do profissional.",
       },
-      { property: "og:title", content: "Mapa de costureiras e ateliês — Costura Fácil" },
+      { property: "og:title", content: "Mapa de costureiras e ateliês — Nossas Costureiras" },
       {
         property: "og:description",
         content: "Explore no mapa os profissionais de costura perto de você.",

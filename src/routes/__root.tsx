@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Costura Fácil" },
+      { title: "Nossas Costureiras" },
       { name: "description", content: "Encontre profissionais de costura perto de você." },
-      { name: "author", content: "Costura Fácil" },
-      { property: "og:title", content: "Costura Fácil" },
+      { name: "author", content: "Nossas Costureiras" },
+      { property: "og:title", content: "Nossas Costureiras" },
       { property: "og:description", content: "Encontre profissionais de costura perto de você." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Scissors, Building2, Search, ChevronRight, MapPin, BadgeCheck, LocateFixed } from "lucide-react";
+import { Scissors, Building2, Search, ChevronRight, MapPin, LocateFixed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BottomNav } from "@/components/bottom-nav";
 import { PROVIDERS, type Provider, type ProviderType } from "@/lib/providers";
@@ -10,17 +10,17 @@ import { chipStyle } from "@/lib/filter-colors";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Costura Fácil — Encontre costureiras e atiliês perto de você" },
+      { title: "Nossas Costureiras — Encontre costureiras e ateliês perto de você" },
       {
         name: "description",
         content:
-          "Busque costureiras e atiliês perto de você, filtre por serviço e encontre o profissional ideal para consertos e roupas sob medida.",
+          "Busque costureiras e ateliês perto de você, filtre por serviço e encontre o profissional ideal para consertos e roupas sob medida.",
       },
-      { property: "og:title", content: "Costura Fácil — Costureiras e atiliês perto de você" },
+      { property: "og:title", content: "Nossas Costureiras — Costureiras e ateliês perto de você" },
       {
         property: "og:description",
         content:
-          "Busque costureiras e atiliês perto de você, filtre por serviço e encontre o profissional ideal.",
+          "Busque costureiras e ateliês perto de você, filtre por serviço e encontre o profissional ideal.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -123,9 +123,6 @@ function ProviderCard({ provider, index }: { provider: Provider; index: number }
           <span className="truncate text-lg font-semibold text-foreground">
             {provider.name}
           </span>
-          {provider.verified && (
-            <BadgeCheck className="h-5 w-5 shrink-0 text-primary" fill="var(--color-primary)" stroke="var(--color-card)" />
-          )}
         </div>
         <p className="mt-1 truncate text-sm text-muted-foreground">
           {provider.tags.join(" • ")}
