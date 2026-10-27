@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { CircleUserRound, MessageCircle, Scissors, Search } from "lucide-react";
+import { CircleUserRound, MessageCircle, Search } from "lucide-react";
 
 import { CursosIcon, MapaIcon } from "@/components/custom-icons";
 
@@ -57,7 +57,7 @@ export function BottomNav() {
             viewTransition
             className="flex items-center gap-2 font-bold text-foreground transition-transform active:scale-95"
           >
-            <Scissors className="h-5 w-5 text-primary" />
+            <img src="/favicon.svg" alt="" className="h-8 w-8" />
             Nossas Costureiras
           </Link>
           <div className="flex items-center gap-1">
