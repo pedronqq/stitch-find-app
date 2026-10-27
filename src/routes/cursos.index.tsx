@@ -67,7 +67,7 @@ function CursosPage() {
           >
             <div className="flex items-start gap-3">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-profile-course-soft text-profile-course">
-                <CursosIcon className="h-6 w-6" />
+                <CursosIcon className="h-7 w-7" />
               </span>
               <div className="min-w-0 flex-1">
                 <h2 className="font-semibold leading-snug text-foreground">{course.title}</h2>

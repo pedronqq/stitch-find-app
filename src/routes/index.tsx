@@ -223,7 +223,7 @@ function Index() {
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <CostureirasIcon className="h-4 w-4" />
+          <CostureirasIcon className="h-5 w-5" />
           Costureiras
         </Button>
         <Button
@@ -235,7 +235,7 @@ function Index() {
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <AteliesIcon className="h-4 w-4" />
+          <AteliesIcon className="h-5 w-5" />
           Ateliês
         </Button>
       </div>
