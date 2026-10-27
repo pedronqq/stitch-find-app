@@ -1,18 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { CircleUserRound, GraduationCap, Map, MessageCircle, Scissors, Search } from "lucide-react";
+import { CircleUserRound, MessageCircle, Scissors, Search } from "lucide-react";
+
+import { CursosIcon, MapaIcon } from "@/components/custom-icons";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRole } from "@/lib/role";
 
 const CLIENT_ITEMS = [
   { to: "/", label: "Início", icon: Search },
-  { to: "/mapa", label: "Mapa", icon: Map },
+  { to: "/mapa", label: "Mapa", icon: MapaIcon },
   { to: "/perfil", label: "Perfil", icon: CircleUserRound },
 ] as const;
 
 const PROVIDER_ITEMS = [
   { to: "/mensagens", label: "Mensagens", icon: MessageCircle },
-  { to: "/cursos", label: "Cursos", icon: GraduationCap },
+  { to: "/cursos", label: "Cursos", icon: CursosIcon },
   { to: "/perfil", label: "Perfil", icon: CircleUserRound },
 ] as const;
 

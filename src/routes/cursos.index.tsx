@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ChevronRight, Clock, GraduationCap } from "lucide-react";
+import { ChevronRight, Clock } from "lucide-react";
 
 import { BottomNav } from "@/components/bottom-nav";
+import { CursosIcon } from "@/components/custom-icons";
 import { COURSES, COURSE_CATEGORIES } from "@/lib/courses";
 import { chipStyle } from "@/lib/filter-colors";
 
@@ -66,7 +67,7 @@ function CursosPage() {
           >
             <div className="flex items-start gap-3">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-profile-course-soft text-profile-course">
-                <GraduationCap className="h-6 w-6" />
+                <CursosIcon className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
                 <h2 className="font-semibold leading-snug text-foreground">{course.title}</h2>
