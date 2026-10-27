@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  BadgeCheck,
   Bell,
   Briefcase,
   ChevronRight,
@@ -27,22 +26,21 @@ const PROVIDER_ITEMS = [
   { label: "Meus serviços", icon: Briefcase },
   { label: "Trabalhos realizados", icon: Images },
   { label: "Cursos concluídos", icon: GraduationCap },
-  { label: "Verificação de documento", icon: BadgeCheck },
   { label: "Configurações", icon: Settings },
 ];
 
 export const Route = createFileRoute("/perfil")({
   head: () => ({
     meta: [
-      { title: "Meu perfil — Costurando" },
+      { title: "Meu perfil — Nossas Costureiras" },
       {
         name: "description",
-        content: "Gerencie seus favoritos, endereço, notificações e preferências no Costurando.",
+        content: "Gerencie seus favoritos, endereço, notificações e preferências no Nossas Costureiras.",
       },
-      { property: "og:title", content: "Meu perfil — Costurando" },
+      { property: "og:title", content: "Meu perfil — Nossas Costureiras" },
       {
         property: "og:description",
-        content: "Favoritos, endereço e preferências da sua conta Costurando.",
+        content: "Favoritos, endereço e preferências da sua conta Nossas Costureiras.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -68,7 +66,6 @@ function PerfilPage() {
             role === "cliente" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
         >
-          <CircleUserRound className="h-4 w-4" />
           Cliente
         </button>
         <button
@@ -79,7 +76,6 @@ function PerfilPage() {
             role === "prestadora" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
           }`}
         >
-          <Briefcase className="h-4 w-4" />
           Prestadora
         </button>
       </div>
@@ -93,12 +89,6 @@ function PerfilPage() {
             {role === "cliente" ? "Visitante" : "Minha Costura Atelier"}
           </p>
           <p className="truncate text-sm text-muted-foreground">Rua Marquês de São Vicente, 225</p>
-          {role === "prestadora" && (
-            <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-profile-blue">
-              <BadgeCheck className="h-3.5 w-3.5" />
-              Documento verificado
-            </span>
-          )}
         </div>
       </div>
 

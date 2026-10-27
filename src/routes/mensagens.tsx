@@ -12,12 +12,12 @@ const CONVERSATIONS = [
 export const Route = createFileRoute("/mensagens")({
   head: () => ({
     meta: [
-      { title: "Mensagens — Costurando" },
+      { title: "Mensagens — Nossas Costureiras" },
       {
         name: "description",
         content: "Converse com seus clientes e acompanhe pedidos de orçamento.",
       },
-      { property: "og:title", content: "Mensagens — Costurando" },
+      { property: "og:title", content: "Mensagens — Nossas Costureiras" },
       { property: "og:description", content: "Converse com seus clientes na plataforma." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

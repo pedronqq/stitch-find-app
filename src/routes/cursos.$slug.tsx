@@ -25,14 +25,14 @@ export const Route = createFileRoute("/cursos/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.title} — Costura Fácil` },
+          { title: `${loaderData.title} — Nossas Costureiras` },
           { name: "description", content: loaderData.description },
-          { property: "og:title", content: `${loaderData.title} — Costura Fácil` },
+          { property: "og:title", content: `${loaderData.title} — Nossas Costureiras` },
           { property: "og:description", content: loaderData.description },
           { property: "og:type", content: "website" },
           { name: "twitter:card", content: "summary_large_image" },
         ]
-      : [{ title: "Curso não encontrado — Costura Fácil" }, { name: "robots", content: "noindex" }],
+      : [{ title: "Curso não encontrado — Nossas Costureiras" }, { name: "robots", content: "noindex" }],
   }),
   component: CoursePage,
 });

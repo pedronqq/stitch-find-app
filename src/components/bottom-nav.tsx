@@ -56,7 +56,7 @@ export function BottomNav() {
             className="flex items-center gap-2 font-bold text-foreground transition-transform active:scale-95"
           >
             <Scissors className="h-5 w-5 text-primary" />
-            Costurando
+            Nossas Costureiras
           </Link>
           <div className="flex items-center gap-1">
             {items.map(({ to, label, icon: Icon }) => (

@@ -11,9 +11,9 @@ export const Route = createFileRoute("/atelies/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData ? `${loaderData.name} — Costura Fácil` : "Ateliê não encontrado" },
+      { title: loaderData ? `${loaderData.name} — Nossas Costureiras` : "Ateliê não encontrado" },
       { name: "description", content: loaderData ? `Conheça ${loaderData.name}, veja serviços, portfólio e entre em contato.` : "Perfil de ateliê indisponível." },
-      { property: "og:title", content: loaderData ? `${loaderData.name} — Costura Fácil` : "Ateliê não encontrado" },
+      { property: "og:title", content: loaderData ? `${loaderData.name} — Nossas Costureiras` : "Ateliê não encontrado" },
       { property: "og:description", content: loaderData ? `Serviços e portfólio de ${loaderData.name}.` : "Perfil de ateliê indisponível." },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },

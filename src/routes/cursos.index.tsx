@@ -9,13 +9,13 @@ import { chipStyle } from "@/lib/filter-colors";
 export const Route = createFileRoute("/cursos/")({
   head: () => ({
     meta: [
-      { title: "Cursos de costura e moda — Costura Fácil" },
+      { title: "Cursos de costura e moda — Nossas Costureiras" },
       {
         name: "description",
         content:
           "Cursos rápidos de costura, modelagem, bordado e gestão para profissionais que querem se qualificar.",
       },
-      { property: "og:title", content: "Cursos de costura e moda — Costura Fácil" },
+      { property: "og:title", content: "Cursos de costura e moda — Nossas Costureiras" },
       {
         property: "og:description",
         content: "Qualifique-se com cursos de costura, modelagem, bordado e gestão.",
