@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { CircleUserRound, MessageCircle, Search } from "lucide-react";
 
-import { CursosIcon, MapaIcon } from "@/components/custom-icons";
+import { CursosIcon, LogoIcon, MapaIcon } from "@/components/custom-icons";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRole } from "@/lib/role";
@@ -57,7 +57,7 @@ export function BottomNav() {
             viewTransition
             className="flex items-center gap-2 font-bold text-foreground transition-transform active:scale-95"
           >
-            <span aria-hidden="true" className="inline-block h-8 w-8 bg-foreground" style={{ WebkitMask: "url(/favicon.svg) center/contain no-repeat", mask: "url(/favicon.svg) center/contain no-repeat" }} />
+            <LogoIcon className="h-8 w-8" />
             Nossas Costureiras
           </Link>
           <div className="flex items-center gap-1">
