@@ -3,7 +3,13 @@ import type { CSSProperties } from "react";
 type IconProps = { className?: string; style?: CSSProperties; strokeWidth?: number };
 
 /** Pure vector icons (traced paths) that follow the current text color. */
+const svgSources: Record<string, { d: string; t: string }> = {};
+export function iconSvgMarkup(key: "costureiras" | "atelies", size: number) {
+  const { d, t } = svgSources[key];
+  return `<svg viewBox="0 0 1024 1024" width="${size}" height="${size}" fill="currentColor"><g transform="${t}"><path d="${d}"/></g></svg>`;
+}
 function makeIcon(d: string, transform: string, name: string) {
+  svgSources[name === "CostureirasIcon" ? "costureiras" : name === "AteliesIcon" ? "atelies" : name] = { d, t: transform };
   function Icon({ className = "h-6 w-6", style }: IconProps) {
     return (
       <svg aria-hidden="true" viewBox="0 0 1024 1024" className={`inline-block shrink-0 ${className}`} style={style} fill="currentColor">

@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 
 import type { Provider } from "@/lib/providers";
 import { chipColor } from "@/lib/filter-colors";
-import { ICON_URLS } from "@/components/custom-icons";
+import { iconSvgMarkup } from "@/components/custom-icons";
 
 type Props = {
   providers: Provider[];
@@ -18,14 +18,13 @@ type Props = {
 function pinIcon(provider: Provider, active: boolean) {
   const size = active ? 46 : 38;
   const color = chipColor(provider.tags[0] ?? "");
-  const iconUrl = provider.type === "costureiras" ? ICON_URLS.costureiras : ICON_URLS.atelies;
   const glyphSize = Math.round(size * 0.56);
   return L.divIcon({
     className: "",
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
     html: `<span style="display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px;border-radius:9999px;background:${color};color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.25);border:2px solid #fff;transition:transform .2s">
-      <span style="display:block;width:${glyphSize}px;height:${glyphSize}px;background:#fff;-webkit-mask:url('${iconUrl}') center/contain no-repeat;mask:url('${iconUrl}') center/contain no-repeat"></span>
+      ${iconSvgMarkup(provider.type === "costureiras" ? "costureiras" : "atelies", glyphSize)}
     </span>`,
   });
 }
