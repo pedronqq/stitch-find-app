@@ -5,7 +5,7 @@ type IconProps = { className?: string; style?: CSSProperties; strokeWidth?: numb
 /** Pure vector icons (traced paths) that follow the current text color. */
 const svgSources: Record<string, { d: string; t: string }> = {};
 export function iconSvgMarkup(key: "costureiras" | "atelies", size: number) {
-  const { d, t } = svgSources[key];
+  const { d, t } = svgSources[key] ?? { d: "", t: "" };
   return `<svg viewBox="0 0 1024 1024" width="${size}" height="${size}" fill="currentColor"><g transform="${t}"><path d="${d}"/></g></svg>`;
 }
 function makeIcon(d: string, transform: string, name: string) {
