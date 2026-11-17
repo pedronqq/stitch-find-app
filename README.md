@@ -34,3 +34,18 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Supabase
+
+The Supabase client is available from `src/lib/supabase.ts`. Create a project in
+[Supabase](https://supabase.com/), copy `.env.example` to `.env.local`, and set:
+
+- `VITE_SUPABASE_URL`: the project's URL.
+- `VITE_SUPABASE_ANON_KEY`: the project's public anon/publishable key.
+
+Restart the dev server after changing environment variables. Call
+`getSupabaseClient()` from application code when you are ready to query the
+database; it reports a clear error if the environment variables are missing.
+The client uses a public key, so enable Row Level Security and appropriate
+policies on database tables. Never put a `service_role` key in a `VITE_*`
+variable or in client-side code.
